@@ -16,7 +16,7 @@
         android:text="Log In"
         android:layout_width="172dp"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:id="@+id/logInButton"
         android:background="@android:color/holo_green_light"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
