@@ -26,10 +26,6 @@
             android:name=".Profile"
             android:label="@string/title_activity_profile" />
         <activity
-            android:name=".Groups"
-            android:label="@string/title_activity_groups"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
             android:name=".LoginCredentialsActivity"
             android:label="@string/title_activity_login_credentials"
             android:parentActivityName=".Login">
@@ -37,6 +33,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="seniorproject.badger.Login" />
         </activity>
+        <activity
+            android:name=".Badge"
+            android:label="@string/title_activity_badge"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".GroupList"
+            android:label="@string/title_activity_group_list"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".FriendsList"
+            android:label="@string/title_activity_friends_list"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".GroupHome"
+            android:label="@string/title_activity_group_home"
+            android:theme="@style/Theme.AppCompat.Light"></activity>
     </application>
 
 </manifest>

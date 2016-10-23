@@ -179,4 +179,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_badge">Badge</string>
+    <string name="title_activity_group_list">Group List</string>
+    <string name="title_activity_friends_list">Friends List</string>
+    <string name="title_activity_group_home">Group Home</string>
 </resources>
