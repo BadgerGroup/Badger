@@ -1,29 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="demourak0.rowan.edu.badger">
+    package="seniorproject.badger">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ViewFriendsActivity">
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity
+            android:name=".Login"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".ViewProfileActivity" />
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
-        <activity android:name=".CreateBadgeActivity" />
-        <activity android:name=".BadgeDisplayActivity" />
-        <activity android:name=".CreateGroupActivity" />
-        <activity android:name=".ViewGroupsActivity"></activity>
+            android:name=".Profile"
+            android:label="@string/title_activity_profile" />
+        <activity
+            android:name=".LoginCredentialsActivity"
+            android:label="@string/title_activity_login_credentials"
+            android:parentActivityName=".Login">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="seniorproject.badger.Login" />
+        </activity>
+        <activity
+            android:name=".Badge"
+            android:label="@string/title_activity_badge"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".GroupList"
+            android:label="@string/title_activity_group_list"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".FriendsList"
+            android:label="@string/title_activity_friends_list"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".GroupHome"
+            android:label="@string/title_activity_group_home"
+            android:theme="@style/Theme.AppCompat.Light"></activity>
     </application>
 
 </manifest>
