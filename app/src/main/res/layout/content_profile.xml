@@ -13,6 +13,18 @@
     tools:context="seniorproject.badger.Profile"
     tools:showIn="@layout/activity_profile">
 
+    <Button
+        android:text="Earned Badges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:id="@+id/button"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:layout_below="@+id/friendsButton"
+        android:layout_alignLeft="@+id/friendsButton"
+        android:layout_alignStart="@+id/friendsButton" />
+
     <TextView
         android:text="User Full Name Here"
         android:layout_width="wrap_content"
@@ -24,19 +36,6 @@
         android:textSize="18sp"
         android:textColor="@android:color/black" />
 
-    <Button
-        android:text="Created Badges"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fullNameTextView"
-        android:layout_toRightOf="@+id/fullNameTextView"
-        android:layout_toEndOf="@+id/fullNameTextView"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:id="@+id/createdBadgesButton"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,9 +45,9 @@
         android:id="@+id/imageView"
         android:scaleType="fitXY"
         android:layout_below="@+id/fullNameTextView"
-        android:layout_toLeftOf="@+id/createdBadgesButton"
-        android:layout_toStartOf="@+id/createdBadgesButton"
-        android:layout_alignBottom="@+id/earnedBadgesButton" />
+        android:layout_toLeftOf="@+id/friendsButton"
+        android:layout_toStartOf="@+id/friendsButton"
+        android:layout_alignBottom="@+id/groupsButton" />
 
     <TextView
         android:text="Trophy Case"
@@ -70,20 +69,34 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/trophyTextView"
         android:id="@+id/editOrGiveButton"
-        android:layout_alignRight="@+id/earnedBadgesButton"
-        android:layout_alignEnd="@+id/earnedBadgesButton"
-        android:layout_alignLeft="@+id/earnedBadgesButton"
-        android:layout_alignStart="@+id/earnedBadgesButton" />
+        android:layout_alignRight="@+id/groupsButton"
+        android:layout_alignEnd="@+id/groupsButton"
+        android:layout_alignLeft="@+id/groupsButton"
+        android:layout_alignStart="@+id/groupsButton" />
 
     <Button
-        android:text="Earned Badges"
+        android:text="Friends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:id="@+id/earnedBadgesButton"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:id="@+id/friendsButton"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
-        android:layout_below="@+id/createdBadgesButton"
-        android:layout_alignLeft="@+id/createdBadgesButton"
-        android:layout_alignStart="@+id/createdBadgesButton" />
+        android:layout_below="@+id/fullNameTextView"
+        android:layout_toRightOf="@+id/fullNameTextView" />
+
+    <Button
+        android:text="Groups"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/groupsButton"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginTop="11dp"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
 </RelativeLayout>
