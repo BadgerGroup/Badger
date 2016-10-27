@@ -12,7 +12,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".Login"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -35,20 +35,21 @@
         </activity>
         <activity
             android:name=".Badge"
-            android:label="@string/title_activity_badge"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:label="@string/title_activity_badge" />
         <activity
             android:name=".GroupList"
-            android:label="@string/title_activity_group_list"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:label="@string/title_activity_group_list" />
+        <activity
+            android:name=".GroupHome"
+            android:label="@string/title_activity_group_home" />
         <activity
             android:name=".FriendsList"
             android:label="@string/title_activity_friends_list"
-            android:theme="@style/Theme.AppCompat.Light" />
-        <activity
-            android:name=".GroupHome"
-            android:label="@string/title_activity_group_home"
-            android:theme="@style/Theme.AppCompat.Light"></activity>
+            android:parentActivityName=".Profile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="seniorproject.badger.Profile" />
+        </activity>
     </application>
 
 </manifest>

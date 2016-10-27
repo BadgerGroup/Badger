@@ -13,18 +13,6 @@
     tools:context="seniorproject.badger.Profile"
     tools:showIn="@layout/activity_profile">
 
-    <Button
-        android:text="Earned Badges"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:id="@+id/button"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_below="@+id/friendsButton"
-        android:layout_alignLeft="@+id/friendsButton"
-        android:layout_alignStart="@+id/friendsButton" />
-
     <TextView
         android:text="User Full Name Here"
         android:layout_width="wrap_content"
@@ -45,46 +33,10 @@
         android:id="@+id/imageView"
         android:scaleType="fitXY"
         android:layout_below="@+id/fullNameTextView"
-        android:layout_toLeftOf="@+id/friendsButton"
         android:layout_toStartOf="@+id/friendsButton"
+        android:layout_alignRight="@+id/fullNameTextView"
+        android:layout_alignEnd="@+id/fullNameTextView"
         android:layout_alignBottom="@+id/groupsButton" />
-
-    <TextView
-        android:text="Trophy Case"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:id="@+id/trophyTextView"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:fontFamily="casual"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Edit/Give"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/trophyTextView"
-        android:id="@+id/editOrGiveButton"
-        android:layout_alignRight="@+id/groupsButton"
-        android:layout_alignEnd="@+id/groupsButton"
-        android:layout_alignLeft="@+id/groupsButton"
-        android:layout_alignStart="@+id/groupsButton" />
-
-    <Button
-        android:text="Friends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:id="@+id/friendsButton"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_below="@+id/fullNameTextView"
-        android:layout_toRightOf="@+id/fullNameTextView" />
 
     <Button
         android:text="Groups"
@@ -99,4 +51,40 @@
         android:layout_marginTop="11dp"
         android:layout_alignRight="@+id/button"
         android:layout_alignEnd="@+id/button" />
+
+    <Button
+        android:text="Earned Badges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:layout_below="@+id/fullNameTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Trophy Case"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:id="@+id/trophyTextView"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:fontFamily="casual"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Edit/Give"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editOrGiveButton"
+        android:layout_alignBottom="@+id/trophyTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/groupsButton"
+        android:layout_alignStart="@+id/groupsButton" />
 </RelativeLayout>
