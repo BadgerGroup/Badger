@@ -33,7 +33,6 @@
         android:id="@+id/imageView"
         android:scaleType="fitXY"
         android:layout_below="@+id/fullNameTextView"
-        android:layout_toStartOf="@+id/friendsButton"
         android:layout_alignRight="@+id/fullNameTextView"
         android:layout_alignEnd="@+id/fullNameTextView"
         android:layout_alignBottom="@+id/groupsButton" />
@@ -45,18 +44,18 @@
         android:id="@+id/groupsButton"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
-        android:layout_below="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/badgesButton"
+        android:layout_alignLeft="@+id/badgesButton"
+        android:layout_alignStart="@+id/badgesButton"
         android:layout_marginTop="11dp"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_alignRight="@+id/badgesButton"
+        android:layout_alignEnd="@+id/badgesButton" />
 
     <Button
         android:text="Earned Badges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:id="@+id/badgesButton"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
         android:layout_below="@+id/fullNameTextView"

@@ -3,14 +3,13 @@ package seniorproject.badger;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,6 +20,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         Button groups = (Button) findViewById(R.id.groupsButton);
         groups.setOnClickListener(this);
+
+        Button badges = (Button) findViewById(R.id.badgesButton);
+        badges.setOnClickListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
         toolbar.setTitle("(User)'s Profile");
@@ -41,6 +43,16 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             case R.id.friendsOption:
                 startActivity(new Intent(this, FriendsList.class));
                 break;
+
+            case R.id.groupsOption:
+                startActivity(new Intent(this, GroupList.class));
+                break;
+
+            case R.id.settingsOption:
+                Toast toast = Toast.makeText(this, "Settings option coming soon...", Toast.LENGTH_SHORT);
+                toast.show();
+                //startActivity(new Intent(this, Settings.class)); --> TODO: Create Settings class
+                break;
         }
         return true;
     }
@@ -50,6 +62,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         switch(v.getId()) {
             case R.id.groupsButton:
                 startActivity(new Intent(this, GroupList.class));
+                break;
+
+            case R.id.badgesButton:
+                startActivity(new Intent(this, BadgeList.class));
                 break;
         }
     }
