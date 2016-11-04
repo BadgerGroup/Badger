@@ -10,13 +10,30 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
+    //ImageView imgClick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        ImageView imgClick1 = (ImageView)findViewById(R.id.imageView1);
+        imgClick1.setOnClickListener(this);
+
+        ImageView imgClick2 = (ImageView)findViewById(R.id.imageView2);
+        imgClick2.setOnClickListener(this);
+
+        ImageView imgClick3 = (ImageView)findViewById(R.id.imageView3);
+        imgClick3.setOnClickListener(this);
+
+        ImageView imgClick4 = (ImageView)findViewById(R.id.imageView4);
+        imgClick4.setOnClickListener(this);
+
+        ImageView imgClick5 = (ImageView)findViewById(R.id.imageView5);
+        imgClick5.setOnClickListener(this);
 
         Button groups = (Button) findViewById(R.id.groupsButton);
         groups.setOnClickListener(this);
@@ -66,6 +83,26 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.badgesButton:
                 startActivity(new Intent(this, BadgeList.class));
+                break;
+
+            case R.id.imageView1:
+                startActivity(new Intent(this, Badge.class));
+                break;
+
+            case R.id.imageView2:
+                startActivity(new Intent(this, Badge.class));
+                break;
+
+            case R.id.imageView3:
+                startActivity(new Intent(this, Badge.class));
+                break;
+
+            case R.id.imageView4:
+                startActivity(new Intent(this, Badge.class));
+                break;
+
+            case R.id.imageView5:
+                startActivity(new Intent(this, Badge.class));
                 break;
         }
     }
