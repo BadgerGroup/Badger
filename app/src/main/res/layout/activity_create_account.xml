@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@drawable/badgerloginprotoblur"
-    tools:context="seniorproject.badger.LoginCredentials">
+    tools:context="seniorproject.badger.CreateAccount">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,6 +23,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_login_credentials" />
+    <include layout="@layout/content_create_account" />
 
 </android.support.design.widget.CoordinatorLayout>
