@@ -10,9 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class LoginCredentials extends AppCompatActivity implements View.OnClickListener {
+
+    EditText userText;
+    EditText passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,12 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
 
         TextView newUserText = (TextView) findViewById(R.id.newUserText);
         newUserText.setOnClickListener(this);
+
+        userText = (EditText) findViewById(R.id.userText);
+        passwordText = (EditText) findViewById(R.id.passwordText);
+
+        Button signInButton = (Button) findViewById(R.id.signInButton);
+        signInButton.setOnClickListener(this);
     }
 
     public boolean onOptionsItemSelected(MenuItem item)
@@ -44,6 +55,15 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.newUserText:
                 startActivity(new Intent(this, CreateAccount.class));
+                break;
+
+            case R.id.signInButton:
+                String username = userText.getText().toString();
+                String password = passwordText.getText().toString();
+
+                //TODO: check for valid username and password in database
+                //Right now, immediately go to profile
+                startActivity(new Intent(this, Profile.class));
                 break;
         }
     }

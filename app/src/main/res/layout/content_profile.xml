@@ -30,7 +30,7 @@
         app:srcCompat="@mipmap/ic_launcher"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/imageView"
+        android:id="@+id/profileImage"
         android:scaleType="fitXY"
         android:layout_below="@+id/fullNameTextView"
         android:layout_alignRight="@+id/fullNameTextView"
@@ -61,7 +61,7 @@
         android:fontFamily="casual"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/profileImage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -103,18 +103,16 @@
         <ImageView
             android:layout_width="106dp"
             android:layout_height="106dp"
-            app:srcCompat="@drawable/badge5"
             android:layout_toRightOf="@+id/gridLayout"
             android:layout_toEndOf="@+id/gridLayout"
-            android:id="@+id/imageView5"
+            android:id="@+id/badgeView2"
             android:layout_row="0"
             android:layout_column="1" />
 
         <ImageView
         android:layout_width="106dp"
         android:layout_height="106dp"
-        app:srcCompat="@drawable/badge1"
-        android:id="@+id/imageView1"
+        android:id="@+id/badgeView1"
 
         android:layout_toRightOf="@+id/gridLayout"
         android:layout_toEndOf="@+id/gridLayout"
@@ -126,37 +124,34 @@
         <ImageView
             android:layout_width="106dp"
             android:layout_height="106dp"
-            app:srcCompat="@drawable/badge2"
-            android:id="@+id/imageView2"
+            android:id="@+id/badgeView3"
             android:layout_toRightOf="@+id/gridLayout"
             android:layout_toEndOf="@+id/gridLayout"
             android:layout_row="0"
             android:layout_column="2" />
 
         <ImageView
-            android:layout_width="106dp"
-            android:layout_height="106dp"
-            app:srcCompat="@drawable/badge4"
-            android:id="@+id/imageView4"
-            android:layout_toRightOf="@+id/gridLayout"
-            android:layout_toEndOf="@+id/gridLayout"
-            android:layout_marginBottom="12dp"
-            android:layout_row="1"
-            android:layout_column="1" />
-
-        <ImageView
             android:layout_width="108dp"
             android:layout_height="106dp"
-            app:srcCompat="@drawable/badge3"
 
             android:layout_toRightOf="@+id/gridLayout"
             android:layout_toEndOf="@+id/gridLayout"
             android:layout_marginLeft="12dp"
             android:layout_marginStart="12dp"
 
-            android:id="@+id/imageView3"
+            android:id="@+id/badgeView4"
             android:layout_row="1"
             android:layout_column="0" />
+
+        <ImageView
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:id="@+id/badgeView5"
+            android:layout_toRightOf="@+id/gridLayout"
+            android:layout_toEndOf="@+id/gridLayout"
+            android:layout_marginBottom="12dp"
+            android:layout_row="1"
+            android:layout_column="1" />
 
     </GridLayout>
 
