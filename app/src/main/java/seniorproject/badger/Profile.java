@@ -15,6 +15,10 @@ import android.widget.ImageView;
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     //ImageView imgClick;
+
+    //TODO: Be able to store the logged in user's credentials and the credentials of the user
+    //TODO:   we are viewing. This second value will determine if the "Give Badges" button
+    //TODO:   will be visible. This value will also change the name of the title bar, username, and trophy case.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.groupsOption:
                 startActivity(new Intent(this, GroupList.class));
+                break;
+
+            case R.id.myProfileOption:
+                startActivity(new Intent(this, Profile.class));
                 break;
 
             case R.id.settingsOption:

@@ -66,7 +66,9 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Edit/Give"
+        android:text="GIVE BADGE"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editOrGiveButton"
@@ -77,15 +79,15 @@
         android:layout_alignStart="@+id/groupsButton" />
 
     <Button
-        android:text="Earned Badges"
-        android:layout_width="wrap_content"
+        android:text="Badges"
         android:layout_height="wrap_content"
         android:id="@+id/badgesButton"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
         android:layout_below="@+id/fullNameTextView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_width="150dp" />
 
     <GridLayout
         android:layout_width="wrap_content"

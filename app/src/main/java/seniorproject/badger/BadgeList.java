@@ -38,9 +38,11 @@ public class BadgeList extends AppCompatActivity {
     {
         switch(item.getItemId()) {
             case R.id.createBadgeOption:
-                Toast toast = Toast.makeText(this, "Badge creation coming soon...", Toast.LENGTH_SHORT);
-                toast.show();
-                //  startActivity(new Intent(this, creatBadge.class)); --> Eventually we'll be able to allow creation of badges
+                 startActivity(new Intent(this, BadgeScreen.class));
+                 break;
+
+            case R.id.myProfileOption:
+                startActivity(new Intent(this, Profile.class));
                 break;
 
             case android.R.id.home:

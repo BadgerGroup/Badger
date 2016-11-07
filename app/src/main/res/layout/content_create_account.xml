@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText6"
+            android:id="@+id/usernameText"
             android:hint="Username" />
 
         <EditText
@@ -34,15 +34,15 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText7"
-            android:hint="Full Name" />
+            android:id="@+id/emailText"
+            android:hint="Email" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText8"
+            android:id="@+id/pwdText"
             android:hint="Password" />
 
         <EditText

@@ -10,16 +10,23 @@
 
     <item
         android:id="@+id/groupsOption"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         android:title="Groups"
         app:showAsAction="never"
         android:visible="true"/>
 
     <item
         android:id="@+id/settingsOption"
-        android:orderInCategory="1"
+        android:orderInCategory="3"
         android:title="Settings"
         app:showAsAction="never"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/myProfileOption"
+        android:title="My Profile"
+        app:showAsAction="never"
+        android:orderInCategory="100"
         android:visible="true"/>
 
 </menu>

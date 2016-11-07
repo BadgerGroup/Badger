@@ -53,6 +53,10 @@ public class FriendsList extends AppCompatActivity {
                 startActivity(new Intent(this, FriendsList.class));
                 break;
 
+            case R.id.myProfileOption:
+                startActivity(new Intent(this, Profile.class));
+                break;
+
             case android.R.id.home:
                 NavUtils.navigateUpTo(this, getIntent());
                 return true;

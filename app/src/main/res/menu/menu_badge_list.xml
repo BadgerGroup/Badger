@@ -9,4 +9,10 @@
         android:visible="true"/>
 
 
+    <item
+        android:id="@+id/myProfileOption"
+        android:title="My Profile"
+        app:showAsAction="never"
+        android:orderInCategory="100"
+        android:visible="true"/>
 </menu>

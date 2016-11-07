@@ -32,8 +32,8 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        uText = (EditText) findViewById(R.id.editText6);
-        pwText = (EditText) findViewById(R.id.editText8);
+        uText = (EditText) findViewById(R.id.usernameText);
+        pwText = (EditText) findViewById(R.id.passwordText);
 
         Button signUpButton = (Button) findViewById(R.id.signUpButton);
         signUpButton.setOnClickListener(this);
