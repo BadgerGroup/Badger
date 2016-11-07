@@ -18,6 +18,7 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
 
     EditText userText;
     EditText passwordText;
+    public static User newUser = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,8 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
             case R.id.signInButton:
                 String username = userText.getText().toString();
                 String password = passwordText.getText().toString();
+                //creates User with sign in info
+                newUser = new User(username, password);
 
                 //TODO: check for valid username and password in database
                 //Right now, immediately go to profile

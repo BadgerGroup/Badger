@@ -42,7 +42,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         badges.setOnClickListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
-        toolbar.setTitle("(User)'s Profile");
+        String userName = LoginCredentials.newUser.getUserName();
+        toolbar.setTitle("" + userName  +"'s Profile");
         toolbar.setTitleTextColor(Color.BLACK);
         toolbar.showOverflowMenu();
         setSupportActionBar(toolbar);

@@ -11,11 +11,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class CreateAccount extends AppCompatActivity implements View.OnClickListener {
+
+    //public static User newUser = new User();
+    EditText uText;
+    EditText pwText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,13 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         toolbar.setTitleTextColor(Color.BLACK);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        uText = (EditText) findViewById(R.id.editText6);
+        pwText = (EditText) findViewById(R.id.editText8);
+
+        Button signUpButton = (Button) findViewById(R.id.signUpButton);
+        signUpButton.setOnClickListener(this);
+
 
     }
 
@@ -41,5 +53,14 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.signUpButton:
+                String u = uText.getText().toString();
+                String pw = pwText.getText().toString();
+                //creates User using info from sign up screen
+                LoginCredentials.newUser = new User(u, pw);
+                startActivity(new Intent(this, Profile.class));
+                // startActivity(new Intent(this, Profile.class));
+        }
     }
 }
