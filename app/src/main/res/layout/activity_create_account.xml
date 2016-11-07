@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="seniorproject.badger.FriendsList">
+    android:background="@drawable/badgerloginprotoblur"
+    tools:context="seniorproject.badger.CreateAccount">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -14,13 +15,14 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
             android:theme="@style/BadgerActionBarTheme"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
             app:popupTheme="@style/PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_friends_list" />
+    <include layout="@layout/content_create_account" />
 
 </android.support.design.widget.CoordinatorLayout>

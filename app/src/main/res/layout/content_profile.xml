@@ -13,18 +13,6 @@
     tools:context="seniorproject.badger.Profile"
     tools:showIn="@layout/activity_profile">
 
-    <Button
-        android:text="Earned Badges"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:id="@+id/button"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_below="@+id/friendsButton"
-        android:layout_alignLeft="@+id/friendsButton"
-        android:layout_alignStart="@+id/friendsButton" />
-
     <TextView
         android:text="User Full Name Here"
         android:layout_width="wrap_content"
@@ -42,49 +30,12 @@
         app:srcCompat="@mipmap/ic_launcher"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/imageView"
+        android:id="@+id/profileImage"
         android:scaleType="fitXY"
         android:layout_below="@+id/fullNameTextView"
-        android:layout_toLeftOf="@+id/friendsButton"
-        android:layout_toStartOf="@+id/friendsButton"
+        android:layout_alignRight="@+id/fullNameTextView"
+        android:layout_alignEnd="@+id/fullNameTextView"
         android:layout_alignBottom="@+id/groupsButton" />
-
-    <TextView
-        android:text="Trophy Case"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:id="@+id/trophyTextView"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:fontFamily="casual"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Edit/Give"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/trophyTextView"
-        android:id="@+id/editOrGiveButton"
-        android:layout_alignRight="@+id/groupsButton"
-        android:layout_alignEnd="@+id/groupsButton"
-        android:layout_alignLeft="@+id/groupsButton"
-        android:layout_alignStart="@+id/groupsButton" />
-
-    <Button
-        android:text="Friends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:id="@+id/friendsButton"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_below="@+id/fullNameTextView"
-        android:layout_toRightOf="@+id/fullNameTextView" />
 
     <Button
         android:text="Groups"
@@ -93,10 +44,120 @@
         android:id="@+id/groupsButton"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
-        android:layout_below="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/badgesButton"
+        android:layout_alignLeft="@+id/badgesButton"
+        android:layout_alignStart="@+id/badgesButton"
         android:layout_marginTop="11dp"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_alignRight="@+id/badgesButton"
+        android:layout_alignEnd="@+id/badgesButton" />
+
+    <TextView
+        android:text="Trophy Case"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:id="@+id/trophyTextView"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:fontFamily="casual"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_below="@+id/profileImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Edit/Give"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editOrGiveButton"
+        android:layout_alignBottom="@+id/trophyTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/groupsButton"
+        android:layout_alignStart="@+id/groupsButton" />
+
+    <Button
+        android:text="Earned Badges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/badgesButton"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:layout_below="@+id/fullNameTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:orientation="horizontal"
+        android:layout_below="@+id/trophyTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <ImageView
+        android:layout_width="106dp"
+        android:layout_height="106dp"
+        android:id="@+id/badgeView1"
+
+        android:layout_toRightOf="@+id/gridLayout"
+        android:layout_toEndOf="@+id/gridLayout"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            app:srcCompat="@drawable/badge1" />
+
+        <ImageView
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:id="@+id/badgeView3"
+            android:layout_toRightOf="@+id/gridLayout"
+            android:layout_toEndOf="@+id/gridLayout"
+            android:layout_row="0"
+            android:layout_column="2"
+            app:srcCompat="@drawable/badge3" />
+
+        <ImageView
+            android:layout_width="108dp"
+            android:layout_height="106dp"
+
+            android:layout_toRightOf="@+id/gridLayout"
+            android:layout_toEndOf="@+id/gridLayout"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+
+            android:id="@+id/badgeView4"
+            android:layout_row="1"
+            android:layout_column="0"
+            app:srcCompat="@drawable/badge4" />
+
+        <ImageView
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:id="@+id/badgeView5"
+            android:layout_toRightOf="@+id/gridLayout"
+            android:layout_toEndOf="@+id/gridLayout"
+            android:layout_marginBottom="12dp"
+            android:layout_row="1"
+            android:layout_column="1"
+            app:srcCompat="@drawable/badge5" />
+
+        <ImageView
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:layout_toRightOf="@+id/gridLayout"
+            android:layout_toEndOf="@+id/gridLayout"
+            android:id="@+id/badgeView2"
+            android:layout_row="0"
+            android:layout_column="1"
+            app:srcCompat="@drawable/badge2" />
+
+    </GridLayout>
+
 </RelativeLayout>
