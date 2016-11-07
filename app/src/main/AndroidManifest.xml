@@ -63,6 +63,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="seniorproject.badger.Login" />
+            <activity
+                android:name=".BadgeScreen"
+                android:label="BadgeScreen"
+                android:theme="@style/Theme.AppCompat.Light"></activity>
         </activity>
     </application>
 
