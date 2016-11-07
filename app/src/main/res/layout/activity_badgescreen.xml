@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:weightSum="1"
+    android:background="#8af968">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Badge Selection Screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="#228B22"
+
+        android:id="@+id/textView" />
+
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="100dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="316dp"
+        android:background = "@drawable/border">
+    </FrameLayout>
+
+    <TextView
+        android:text="Select Your Badge!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="#228B22"
+        android:id="@+id/textView3" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#000000" />
+
+
+
+    <HorizontalScrollView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop= "3dp" >
+
+
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal" >
+
+            <ImageButton
+                app:srcCompat="@drawable/badge1"
+                android:id="@+id/imageButton2"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+
+
+            <ImageButton
+                app:srcCompat="@drawable/badge2"
+                android:id="@+id/imageButton3"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+
+            <ImageButton
+                app:srcCompat="@drawable/badge3"
+                android:id="@+id/imageButton4"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+
+            <ImageButton
+                app:srcCompat="@drawable/badge4"
+                android:id="@+id/imageButton5"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+            <ImageButton
+                app:srcCompat="@drawable/badge5"
+                android:id="@+id/imageButton6"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+            <ImageButton
+                app:srcCompat="@drawable/badge1"
+                android:id="@+id/imageButton7"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+            <ImageButton
+                app:srcCompat="@drawable/badge2"
+                android:id="@+id/imageButton8"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+            <ImageButton
+                app:srcCompat="@drawable/badge3"
+                android:id="@+id/imageButton9"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+
+
+        </LinearLayout>
+
+
+
+    </HorizontalScrollView>
+
+
+
+
+
+</LinearLayout>
