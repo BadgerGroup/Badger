@@ -49,6 +49,11 @@
             android:name=".GroupHome"
             android:label="@string/title_activity_group_home"
             android:theme="@style/Theme.AppCompat.Light"></activity>
+
+        <activity
+            android:name=".BadgeScreen"
+            android:label="BadgeScreen"
+            android:theme="@style/Theme.AppCompat.Light"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:weightSum="1"
+    android:background="#8af968">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:text="Badge Selection Screen"
@@ -20,11 +26,22 @@
 
         android:id="@+id/textView" />
 
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="100dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="316dp"
+        android:background = "@drawable/border">
+    </FrameLayout>
+
     <TextView
         android:text="Select Your Badge!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="80dp"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textAllCaps="true"
@@ -42,7 +59,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp" >
+        android:layout_marginTop= "3dp" >
 
 
 
@@ -54,46 +71,74 @@
 
             android:orientation="horizontal" >
 
-            <ImageView
-                android:layout_width="96dp"
-                android:layout_height="58dp"
-                app:srcCompat="@drawable/badge2"
-                android:id="@+id/imageView3" />
-            <ImageView
-                android:layout_width="96dp"
-                android:layout_height="58dp"
-                app:srcCompat="@drawable/badge3"
-                android:id="@+id/imageView4" />
-            <ImageView
-                android:layout_width="96dp"
-                android:layout_height="58dp"
-                app:srcCompat="@drawable/badge4"
-                android:id="@+id/imageView5" />
-            <ImageView
-                android:layout_width="96dp"
-                android:layout_height="58dp"
-                app:srcCompat="@drawable/badge5"
-                android:id="@+id/imageView6" />
-
-            <ImageView
-                android:layout_width="96dp"
-                android:layout_height="58dp"
+            <ImageButton
                 app:srcCompat="@drawable/badge1"
-                android:id="@+id/imageView7" />
-
-            <ImageView
+                android:id="@+id/imageButton2"
+                android:cropToPadding="false"
                 android:layout_width="96dp"
                 android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+
+
+            <ImageButton
                 app:srcCompat="@drawable/badge2"
-                android:id="@+id/imageView8" />
-
-            <ImageView
+                android:id="@+id/imageButton3"
+                android:cropToPadding="false"
                 android:layout_width="96dp"
                 android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+
+            <ImageButton
                 app:srcCompat="@drawable/badge3"
-                android:id="@+id/imageView9" />
+                android:id="@+id/imageButton4"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
 
-
+            <ImageButton
+                app:srcCompat="@drawable/badge4"
+                android:id="@+id/imageButton5"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+            <ImageButton
+                app:srcCompat="@drawable/badge5"
+                android:id="@+id/imageButton6"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+            <ImageButton
+                app:srcCompat="@drawable/badge1"
+                android:id="@+id/imageButton7"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+            <ImageButton
+                app:srcCompat="@drawable/badge2"
+                android:id="@+id/imageButton8"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
+            <ImageButton
+                app:srcCompat="@drawable/badge3"
+                android:id="@+id/imageButton9"
+                android:cropToPadding="false"
+                android:layout_width="96dp"
+                android:layout_height="58dp"
+                style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+                android:scaleType="centerCrop" />
 
 
         </LinearLayout>
