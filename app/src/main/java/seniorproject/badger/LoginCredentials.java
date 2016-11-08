@@ -18,6 +18,7 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
 
     EditText userText;
     EditText passwordText;
+    EditText emailText;
     public static User newUser = new User();
 
     @Override
@@ -36,6 +37,7 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
 
         userText = (EditText) findViewById(R.id.userText);
         passwordText = (EditText) findViewById(R.id.passwordText);
+        emailText = (EditText) findViewById(R.id.emailText);
 
         Button signInButton = (Button) findViewById(R.id.signInButton);
         signInButton.setOnClickListener(this);
@@ -61,8 +63,10 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
             case R.id.signInButton:
                 String username = userText.getText().toString();
                 String password = passwordText.getText().toString();
+
                 //creates User with sign in info
-                newUser = new User(username, password);
+                newUser = new User();
+                newUser.setUserName(username);
 
                 //TODO: check for valid username and password in database
                 //Right now, immediately go to profile

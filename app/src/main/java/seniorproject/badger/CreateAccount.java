@@ -21,6 +21,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     //public static User newUser = new User();
     EditText uText;
     EditText pwText;
+    EditText mailText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
 
         uText = (EditText) findViewById(R.id.usernameText);
         pwText = (EditText) findViewById(R.id.passwordText);
+        mailText = (EditText) findViewById(R.id.emailText);
 
         Button signUpButton = (Button) findViewById(R.id.signUpButton);
         signUpButton.setOnClickListener(this);
@@ -56,9 +58,11 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         switch(v.getId()) {
             case R.id.signUpButton:
                 String u = uText.getText().toString();
-                String pw = pwText.getText().toString();
+                String email = mailText.getText().toString();
+                //String pw = pwText.getText().toString();
                 //creates User using info from sign up screen
-                LoginCredentials.newUser = new User(u, pw);
+                LoginCredentials.newUser = new User();
+                LoginCredentials.newUser.setUserName(u);
                 startActivity(new Intent(this, Profile.class));
                 // startActivity(new Intent(this, Profile.class));
         }

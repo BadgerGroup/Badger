@@ -1,25 +1,64 @@
 package seniorproject.badger;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ImageView;
 
-public class Badge extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_badge);
+public class Badge  {
 
-        //ImageView image = null;
-        //image = (ImageView)findViewById(R.id.image);
-        //image.setImageResource(R.drawable.badge1);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+    private String badgeName;
+    private String authorID;
+    private String recipientID;
+    private String imageURL;
+    private String description;
+
+    public Badge(){
+
     }
 
+    public Badge(String name, String author, String recp, String url, String descr){
+        badgeName = name;
+        authorID = author;
+        recipientID = recp;
+        imageURL = url;
+        description = descr;
+    }
+
+    public String getBadgeName() {
+        return badgeName;
+    }
+
+    public void setBadgeName(String badgeName) {
+        this.badgeName = badgeName;
+    }
+
+    public String getAuthorID() {
+        return authorID;
+    }
+
+    public void setAuthorID(String authorID) {
+        this.authorID = authorID;
+    }
+
+    public String getRecipientID() {
+        return recipientID;
+    }
+
+    public void setRecipientID(String recipientID) {
+        this.recipientID = recipientID;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

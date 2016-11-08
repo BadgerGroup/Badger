@@ -4,12 +4,12 @@ package seniorproject.badger;
 public class User {
 
     private String userName;
-    //private String emailAddress;
+    private String emailAddress;
     private String password;
 
-    public User(String name, String pw){
+    public User(String name, String email, String pw){
         userName = name;
-        //emailAddress = email;
+        emailAddress = email;
         password = pw;
     }
 
@@ -17,9 +17,9 @@ public class User {
 
     }
 
-    //public String getEmailAddress() {
-    //    return emailAddress;
-    //}
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
     public String getPassword() {
         return password;
@@ -29,9 +29,9 @@ public class User {
         return userName;
     }
 
-    //public void setEmailAddress(String email) {
-      //  this.emailAddress = email;
-    //}
+    public void setEmailAddress(String email) {
+        this.emailAddress = email;
+    }
 
     public void setPassword(String pw) {
         this.password = pw;
