@@ -19,7 +19,12 @@
         </activity>
         <activity
             android:name=".Profile"
-            android:label="@string/title_activity_profile" />
+            android:label="Profile" />
+        <activity
+            android:name=".FriendSearch"
+            android:label="FriendSearch"
+            android:parentActivityName=".FriendsList"/>
+
         <activity
             android:name=".BadgeScreen"
             android:label="@string/title_activity_badge" />

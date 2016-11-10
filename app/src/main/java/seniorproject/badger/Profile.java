@@ -24,26 +24,29 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        ImageView imgClick1 = (ImageView)findViewById(R.id.badgeView1);
-        imgClick1.setOnClickListener(this);
-
-        ImageView imgClick2 = (ImageView)findViewById(R.id.badgeView2);
-        imgClick2.setOnClickListener(this);
-
-        ImageView imgClick3 = (ImageView)findViewById(R.id.badgeView3);
-        imgClick3.setOnClickListener(this);
-
-        ImageView imgClick4 = (ImageView)findViewById(R.id.badgeView4);
-        imgClick4.setOnClickListener(this);
-
-        ImageView imgClick5 = (ImageView)findViewById(R.id.badgeView5);
-        imgClick5.setOnClickListener(this);
+//        ImageView imgClick1 = (ImageView)findViewById(R.id.badgeView1);
+//        imgClick1.setOnClickListener(this);
+//
+//        ImageView imgClick2 = (ImageView)findViewById(R.id.badgeView2);
+//        imgClick2.setOnClickListener(this);
+//
+//        ImageView imgClick3 = (ImageView)findViewById(R.id.badgeView3);
+//        imgClick3.setOnClickListener(this);
+//
+//        ImageView imgClick4 = (ImageView)findViewById(R.id.badgeView4);
+//        imgClick4.setOnClickListener(this);
+//
+//        ImageView imgClick5 = (ImageView)findViewById(R.id.badgeView5);
+//        imgClick5.setOnClickListener(this);
 
         Button groups = (Button) findViewById(R.id.groupsButton);
         groups.setOnClickListener(this);
 
         Button badges = (Button) findViewById(R.id.badgesButton);
         badges.setOnClickListener(this);
+
+        Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
+        giveBadges.setOnClickListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
         String userName = LoginCredentials.newUser.getUserName();
@@ -94,25 +97,29 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this, BadgeList.class));
                 break;
 
-            case R.id.badgeView1:
-                startActivity(new Intent(this, Badge.class));
+            case R.id.editOrGiveButton:
+                startActivity(new Intent(this, BadgeScreen.class));
                 break;
 
-            case R.id.badgeView2:
-                startActivity(new Intent(this, Badge.class));
-                break;
-
-            case R.id.badgeView3:
-                startActivity(new Intent(this, Badge.class));
-                break;
-
-            case R.id.badgeView4:
-                startActivity(new Intent(this, Badge.class));
-                break;
-
-            case R.id.badgeView5:
-                startActivity(new Intent(this, Badge.class));
-                break;
+//            case R.id.badgeView1:
+//                startActivity(new Intent(this, Badge.class));
+//                break;
+//
+//            case R.id.badgeView2:
+//                startActivity(new Intent(this, Badge.class));
+//                break;
+//
+//            case R.id.badgeView3:
+//                startActivity(new Intent(this, Badge.class));
+//                break;
+//
+//            case R.id.badgeView4:
+//                startActivity(new Intent(this, Badge.class));
+//                break;
+//
+//            case R.id.badgeView5:
+//                startActivity(new Intent(this, Badge.class));
+//                break;
         }
     }
 }

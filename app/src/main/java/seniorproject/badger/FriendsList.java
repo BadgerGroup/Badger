@@ -50,7 +50,7 @@ public class FriendsList extends AppCompatActivity {
     {
         switch(item.getItemId()){
             case R.id.addFriendOption:
-                startActivity(new Intent(this, FriendsList.class));
+                startActivity(new Intent(this, FriendSearch.class));
                 break;
 
             case R.id.myProfileOption:

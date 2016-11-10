@@ -14,12 +14,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class LoginCredentials extends AppCompatActivity implements View.OnClickListener {
 
     EditText userText;
     EditText passwordText;
     EditText emailText;
     public static User newUser = new User();
+    public static User user1 = new User();
+    public static User user2 = new User();
+    public static User user3 = new User();
+    public static User user4 = new User();
+    public static User user5 = new User();
+    public static ArrayList<String> allUsers = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,22 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
 
         Button signInButton = (Button) findViewById(R.id.signInButton);
         signInButton.setOnClickListener(this);
+
+        //create dummy users for testing
+        user1.setUserName("user1");
+        user2.setUserName("user2");
+        user3.setUserName("user3");
+        user4.setUserName("user4");
+        user5.setUserName("user5");
+
+        //put users in array (just String of user names for now)
+        allUsers.add("user1");
+        allUsers.add("user2");
+        allUsers.add("user3");
+        allUsers.add("user4");
+        allUsers.add("user5");
+
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item)
