@@ -101,6 +101,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this, BadgeScreen.class));
                 break;
 
+            //For trophy case
+
 //            case R.id.badgeView1:
 //                startActivity(new Intent(this, Badge.class));
 //                break;
