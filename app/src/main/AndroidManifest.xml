@@ -37,11 +37,14 @@
         <activity
             android:name=".FriendsList"
             android:label="@string/title_activity_friends_list"
-            android:parentActivityName=".Profile">
+            android:parentActivityName=".Profile"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="seniorproject.badger.Profile" />
         </activity>
+
+
         <activity
             android:name=".BadgeList"
             android:label="@string/title_activity_badge_list"

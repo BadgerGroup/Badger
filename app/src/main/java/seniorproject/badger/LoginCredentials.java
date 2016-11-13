@@ -27,7 +27,7 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
     public static User user3 = new User();
     public static User user4 = new User();
     public static User user5 = new User();
-    public static ArrayList<String> allUsers = new ArrayList<String>();
+    public static ArrayList<User> allUsers = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,8 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
         Button signInButton = (Button) findViewById(R.id.signInButton);
         signInButton.setOnClickListener(this);
 
+        FriendSearch.setIsFriend(false);
+
         //create dummy users for testing
         user1.setUserName("user1");
         user2.setUserName("user2");
@@ -58,11 +60,11 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
         user5.setUserName("user5");
 
         //put users in array (just String of user names for now)
-        allUsers.add("user1");
-        allUsers.add("user2");
-        allUsers.add("user3");
-        allUsers.add("user4");
-        allUsers.add("user5");
+        allUsers.add(user1);
+        allUsers.add(user2);
+        allUsers.add(user3);
+        allUsers.add(user4);
+        allUsers.add(user5);
 
 
     }

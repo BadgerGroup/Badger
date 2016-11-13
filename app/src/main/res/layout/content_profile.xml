@@ -38,7 +38,7 @@
         android:layout_alignBottom="@+id/groupsButton" />
 
     <Button
-        android:text="Groups"
+        android:text="Friends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/groupsButton"
