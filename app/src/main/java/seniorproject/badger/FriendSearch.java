@@ -2,11 +2,13 @@ package seniorproject.badger;
 
 
 import android.app.LocalActivityManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -24,12 +26,10 @@ import java.util.ArrayList;
 
 public class FriendSearch extends AppCompatActivity implements View.OnClickListener {
 
-
-
-
     private static boolean isFriend;
-    private static EditText friendName;
-    public static ArrayList<User> allFriends = new ArrayList<User>();
+    EditText name;
+    private static String friendName;
+    //public static ArrayList<User> allFriends = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +38,24 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
 
         isFriend = false;
 
-        friendName = (EditText) findViewById(R.id.friendText);
+        name = (EditText) findViewById(R.id.friendText);
+        friendName = name.getText().toString();
 
         Button seacrhButton = (Button) findViewById(R.id.searchButton);
         seacrhButton.setOnClickListener(this);
 
+
+
     }
 
-    public static String getFriendName(){
-        String fName = friendName.getText().toString();
-        return fName;
-    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
 
             case R.id.searchButton:
-                String fName = getFriendName();
+                //will need to change once we cna get friends info from database
+                String fName = name.getText().toString();
                 int size = LoginCredentials.allUsers.size();
                 ArrayList<String> names = new ArrayList<String>(size);
                 for(int i = 0; i <= size -1 ; i++){
@@ -66,22 +67,34 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
                     isFriend = true;
                     User friend = new User();
                     friend.setUserName(fName);
-                    allFriends.add(friend);
+                    FriendsList.allFriends.add(friend);
 
-
-                    //for now if true goes back to FriendList page
-                    startActivity(new Intent(this, Profile.class));
+                    //if found back to FriendsList
+                    startActivity(new Intent(this, FriendsList.class));
                     break;
                 }
                 else {
-                    //for now if false goes to Profile page
-                    startActivity(new Intent(this, Profile.class));
+                    //creates popup window
+                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+                    dlgAlert.setMessage("No user found with that username");
+                    dlgAlert.setTitle("Try Again");
+                    dlgAlert.setPositiveButton("OK", null);
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.create().show();
+
+                    dlgAlert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //dismiss the dialog
+                                }
+                            });
                 }
                 break;
 
 
         }
     }
+
 
     public static boolean isFriend() {
         return isFriend;
@@ -91,12 +104,16 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
         isFriend = friend;
     }
 
-    public static void setFriendName(EditText fName) {
+    public static void setFriendName(String fName) {
         friendName = fName;
     }
 
     public static ArrayList<User> getAllFriends() {
-        return allFriends;
+        return FriendsList.allFriends;
+    }
+
+    public static String getFriendName(){
+        return friendName;
     }
 
 }
