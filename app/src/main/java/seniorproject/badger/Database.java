@@ -2,7 +2,6 @@ package seniorproject.badger;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +21,6 @@ import java.util.concurrent.ExecutionException;
 
 public class Database {
 
-
     private static final String API_URL = "http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com";
 
     public static void main(String[] args) {
@@ -35,28 +33,37 @@ public class Database {
 
     }
 
-    public void testAPI() {
-    }
-
-    public JSONObject makePostRequest(final String endpoint, final JSONObject request) {
+    public JSONObject makeRequest(final String httpMethod, final String endpoint, final String query, final JSONObject request) {
         AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
             @Override
             protected String doInBackground(String... params) {
                 StringBuilder sb = new StringBuilder();
                 try {
                     HttpURLConnection conn;
-                    URL url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com" + endpoint);
+                    String strUrl = API_URL + endpoint;
+                    if (query != null) {
+                        strUrl += "?" + query;
+                    }
+                    URL url = new URL(strUrl);
                     conn = (HttpURLConnection) url.openConnection();
-
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Content-Type", "application/json");
                     conn.setRequestProperty("Accept", "application/json");
                     conn.setDoOutput(true);
                     conn.setDoInput(true);
 
-                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                    wr.write(request.toString());
-                    wr.flush();
+                    switch (httpMethod) {
+                        case "POST":
+                            conn.setRequestMethod("POST");
+                            conn.setRequestProperty("Content-Type", "application/json");
+                            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+                            wr.write(request.toString());
+                            wr.flush(); break;
+                        case "GET":
+                            break;
+                        default:
+                            Exception e = new IllegalArgumentException("Invalid HTTP method given to makeRequest.");
+                            Log.e("Database", e.toString());
+                            throw e;
+                    }
 
                     int HttpResult = conn.getResponseCode();
                     if (HttpResult == HttpURLConnection.HTTP_OK) {
@@ -92,6 +99,14 @@ public class Database {
             je.printStackTrace();
         }
         return json;
+    }
+
+    public JSONObject makeGetRequest(final String endpoint, final String query) {
+        return makeRequest("GET", endpoint, query, null);
+    }
+
+    public JSONObject makePostRequest(String endpoint, JSONObject json) {
+        return makeRequest("POST", endpoint, null, json);
     }
 
     public User login(String username, String password) {
@@ -323,45 +338,13 @@ public class Database {
         }
     }
 
-    public User getUser(String userID)
+    public User getUser(int userID)
     {
-        URL url = null;
-        HttpURLConnection conn = null;
-        User user = null;
-        try
-        {
+        return null;
+    }
 
-            url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com" +
-                    "/readUser?id=" + userID);
-            conn = (HttpURLConnection) url.openConnection();
-        }
-        catch(Exception e)
-        {
-            System.out.println("Error opening connection");
-        }
-        try {
-            conn.setRequestMethod("GET");
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            //print result
-            System.out.println(response.toString());
-
-        }
-        catch(Exception e)
-        {
-            System.out.println("Error reading user");
-        }
-
-        return user;
+    public User getUser(String username) {
+        return new User(makeGetRequest("/readUser", "username=" + username));
     }
 
     public List<Badge> getTrophyCase(String userID)
