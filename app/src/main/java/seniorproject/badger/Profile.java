@@ -24,6 +24,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+    // for trophy case
 //        ImageView imgClick1 = (ImageView)findViewById(R.id.badgeView1);
 //        imgClick1.setOnClickListener(this);
 //
@@ -39,18 +40,39 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 //        ImageView imgClick5 = (ImageView)findViewById(R.id.badgeView5);
 //        imgClick5.setOnClickListener(this);
 
-        Button groups = (Button) findViewById(R.id.groupsButton);
-        groups.setOnClickListener(this);
+
 
         Button badges = (Button) findViewById(R.id.badgesButton);
         badges.setOnClickListener(this);
 
-        Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
-        giveBadges.setOnClickListener(this);
+        //sets give badge button visible if this is friend's page
+        if (FriendSearch.isFriend() == true) {
+            Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
+            giveBadges.setOnClickListener(this);
+
+            Button friends = (Button) findViewById(R.id.groupsButton);
+            friends.setVisibility(View.GONE);
+        }
+        else{
+            Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
+            giveBadges.setVisibility(View.GONE);
+
+            Button friends = (Button) findViewById(R.id.groupsButton);
+            friends.setOnClickListener(this);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
-        String userName = LoginCredentials.newUser.getUserName();
-        toolbar.setTitle("" + userName  +"'s Profile");
+
+        //sets Profile name to User or friend's name
+        if (FriendSearch.isFriend() == false) {
+            String userName = LoginCredentials.newUser.getUserName();
+            toolbar.setTitle("" + userName + "'s Profile");
+        }
+        else{
+            String fName = FriendSearch.getFriendName();
+            toolbar.setTitle("" + fName + "'s Profile");
+        }
+
         toolbar.setTitleTextColor(Color.BLACK);
         toolbar.showOverflowMenu();
         setSupportActionBar(toolbar);
@@ -69,11 +91,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this, FriendsList.class));
                 break;
 
-            case R.id.groupsOption:
-                startActivity(new Intent(this, GroupList.class));
-                break;
+//            case R.id.groupsOption:
+//                startActivity(new Intent(this, GroupList.class));
+//                break;
 
             case R.id.myProfileOption:
+                FriendSearch.setIsFriend(false);
                 startActivity(new Intent(this, Profile.class));
                 break;
 
@@ -90,7 +113,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     {
         switch(v.getId()) {
             case R.id.groupsButton:
-                startActivity(new Intent(this, GroupList.class));
+                startActivity(new Intent(this, FriendsList.class));
                 break;
 
             case R.id.badgesButton:

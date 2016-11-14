@@ -8,12 +8,7 @@
         app:showAsAction="never"
         android:visible="true"/>
 
-    <item
-        android:id="@+id/groupsOption"
-        android:orderInCategory="2"
-        android:title="Groups"
-        app:showAsAction="never"
-        android:visible="true"/>
+
 
     <item
         android:id="@+id/settingsOption"
