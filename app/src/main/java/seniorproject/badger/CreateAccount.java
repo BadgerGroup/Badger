@@ -63,11 +63,16 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
                 String pw = pwText.getText().toString();
 
                 Database db = new Database();
-                User user = db.createUser(u, pw, email);
-                BadgerApp app = (BadgerApp) getApplication();
-                app.setCurrentUser(user);
+                try {
+                    User user = db.createUser(u, pw, email);
+                    BadgerApp app = (BadgerApp) getApplication();
+                    app.setCurrentUser(user);
 
-                startActivity(new Intent(this, Profile.class));
+                    startActivity(new Intent(this, Profile.class));
+                }
+                catch (IllegalArgumentException e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
         }
     }
 }

@@ -3,6 +3,7 @@ package seniorproject.badger;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,7 +62,7 @@ public class Database {
                     if (HttpResult == HttpURLConnection.HTTP_OK) {
                         BufferedReader br = new BufferedReader(
                                 new InputStreamReader(conn.getInputStream(), "utf-8"));
-                        String line = null;
+                        String line;
                         while ((line = br.readLine()) != null) {
                             sb.append(line + "\n");
                         }
@@ -77,8 +78,7 @@ public class Database {
                     e.printStackTrace();
                     Log.e("Database", e.toString());
                 }
-                    String response = sb.toString();
-                    return response;
+                return sb.toString();
             }
         };
         JSONObject json = null;
@@ -94,62 +94,6 @@ public class Database {
         return json;
     }
 
-    public void TcreateUser(String username, String password, String email) {
-        final String USERNAME = username;
-        final String PASSWORD = password;
-        final String EMAIL = email;
-            AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
-                @Override
-                protected String doInBackground(String... params) {
-                    try {
-                        HttpURLConnection conn = null;
-                        URL url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com/createUser");
-                        conn = (HttpURLConnection) url.openConnection();
-
-                        conn.setRequestMethod("POST");
-                        conn.setRequestProperty("Content-Type", "application/json");
-                        conn.setRequestProperty("Accept", "application/json");
-                        conn.setDoOutput(true);
-                        conn.setDoInput(true);
-
-                        JSONObject user = new JSONObject();
-                        user.put("username", params[0]);
-                        user.put("password", params[1]);
-                        user.put("password_confirmation", params[1]);
-                        user.put("email", params[2]);
-
-                        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                        wr.write(user.toString());
-                        wr.flush();
-
-                        StringBuilder sb = new StringBuilder();
-                        int HttpResult = conn.getResponseCode();
-                        if (HttpResult == HttpURLConnection.HTTP_OK) {
-                            BufferedReader br = new BufferedReader(
-                                    new InputStreamReader(conn.getInputStream(), "utf-8"));
-                            String line = null;
-                            while ((line = br.readLine()) != null) {
-                                sb.append(line + "\n");
-                            }
-                            br.close();
-                            Log.d("Database", "" + sb.toString());
-                        } else {
-                            Log.d("Database", conn.getResponseMessage());
-                        }
-
-
-                    } catch (Exception e) {
-                        Log.d("Database", "Error opening connection");
-                        e.printStackTrace();
-                        Log.e("Database", e.toString());
-                    }
-                    return null;
-                }
-            };
-        task.execute(USERNAME, PASSWORD, EMAIL);
-
-    }
-
     public User createUser(String username, String password, String email) {
         JSONObject user = new JSONObject();
         User result;
@@ -160,7 +104,12 @@ public class Database {
             user.put("email", email);
 
             JSONObject response = makePostRequest("/createUser", user);
-            Log.d("Database", response.toString());
+
+            if (response.getString("error") != null) {
+                Log.e("Database", response.getString("error"));
+                throw new IllegalArgumentException(response.getString("error"));
+            }
+
             result = new User(response.getString("id"), response.getString("username"), response.getString("email"));
         }
         catch (JSONException je) {
