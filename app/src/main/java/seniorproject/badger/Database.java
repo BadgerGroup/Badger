@@ -19,6 +19,10 @@ import java.util.concurrent.ExecutionException;
 
 import org.apache.http.*;
 
+/**
+ * Library class for communicating with BadgerAPI.
+ */
+
 public class Database {
 
 
