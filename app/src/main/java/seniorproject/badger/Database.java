@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.*;
 
 import java.io.DataOutputStream;
 import java.io.OutputStreamWriter;
@@ -69,10 +68,10 @@ public class Database {
                         br.close();
                         Log.d("Database", "" + sb.toString());
                     } else {
+                        Log.d("Database", "HTTP Result was NOT OK");
+                        Log.d("Database", "HTTP RESPONSE: " + HttpResult);
                         Log.d("Database", conn.getResponseMessage());
                     }
-
-
                 } catch (Exception e) {
                     Log.d("Database", "Error opening connection");
                     e.printStackTrace();
@@ -92,6 +91,26 @@ public class Database {
             je.printStackTrace();
         }
         return json;
+    }
+
+    public User login(String username, String password) {
+        JSONObject userLogin = new JSONObject();
+        User result;
+        try {
+            userLogin.put("username", username);
+            userLogin.put("password", password);
+
+            JSONObject response = makePostRequest("/login", userLogin);
+            if (!response.isNull("error")) {
+                Log.e("Database", response.getString("error"));
+                throw new IllegalArgumentException(response.getString("error"));
+            }
+            result = new User(response);
+        }
+        catch (JSONException je) {
+            result = null;
+        }
+        return result;
     }
 
     public User createUser(String username, String password, String email) {

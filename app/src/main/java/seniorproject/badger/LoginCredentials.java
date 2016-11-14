@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -90,11 +91,14 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
                 String username = userText.getText().toString();
                 String password = passwordText.getText().toString();
 
-                //creates User with sign in info
-                newUser = new User();
-                newUser.setUserName(username);
-
-                //TODO: check for valid username and password in database
+                Database db = new Database();
+                try {
+                    User user = db.login(username, password);
+                    ((BadgerApp) getApplication()).setCurrentUser(user);
+                }
+                catch (IllegalArgumentException e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 //Right now, immediately go to profile
                 startActivity(new Intent(this, Profile.class));
                 break;
