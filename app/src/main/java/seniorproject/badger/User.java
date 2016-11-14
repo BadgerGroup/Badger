@@ -7,10 +7,16 @@ public class User {
     private String emailAddress;
     private String password;
 
-    public User(String name, String email, String pw){
+    private String id;
+    private String[] groupIds;
+    private String[] ownedGroups;
+    private String[] badgeIds;
+    private String[] receivedBadges;
+
+    public User(String id, String name, String email){
+        this.id = id;
         userName = name;
         emailAddress = email;
-        password = pw;
     }
 
     public User() {
@@ -39,5 +45,37 @@ public class User {
 
     public void setUserName(String name) {
         this.userName = name;
+    }
+
+    public String[] getGroupIds() {
+        return groupIds;
+    }
+
+    public void setGroupIds(String[] groupIds) {
+        this.groupIds = groupIds;
+    }
+
+    public String[] getOwnedGroups() {
+        return ownedGroups;
+    }
+
+    public void setOwnedGroups(String[] ownedGroups) {
+        this.ownedGroups = ownedGroups;
+    }
+
+    public String[] getBadgeIds() {
+        return badgeIds;
+    }
+
+    public void setBadgeIds(String[] badgeIds) {
+        this.badgeIds = badgeIds;
+    }
+
+    public String[] getReceivedBadges() {
+        return receivedBadges;
+    }
+
+    public void setReceivedBadges(String[] receivedBadges) {
+        this.receivedBadges = receivedBadges;
     }
 }

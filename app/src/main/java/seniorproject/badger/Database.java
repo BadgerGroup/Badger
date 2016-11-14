@@ -1,58 +1,173 @@
 package seniorproject.badger;
 
+import android.os.AsyncTask;
+import android.util.JsonReader;
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.*;
+
 import java.io.DataOutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import org.apache.http.*;
 
 public class Database {
 
+
+    private static final String API_URL = "http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com";
+
+    public static void main(String[] args) {
+        Database db = new Database();
+        db.createUser("testLibraryUser", "pw", "testLibUser@example.com");
+    }
 
     public Database()
     {
 
     }
 
-    public void createUser(String username, String password, String email) {
-        URL url = null;
-        HttpURLConnection conn = null;
-        try {
+    public void testAPI() {
+    }
 
-            url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com/createUser");
-            conn = (HttpURLConnection) url.openConnection();
-        } catch (Exception e) {
-            System.out.println("Error opening connection");
-        }
+    public JSONObject makePostRequest(final String endpoint, final JSONObject request) {
+        AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
+            @Override
+            protected String doInBackground(String... params) {
+                StringBuilder sb = new StringBuilder();
+                try {
+                    HttpURLConnection conn;
+                    URL url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com" + endpoint);
+                    conn = (HttpURLConnection) url.openConnection();
 
-        try {
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json");
+                    conn.setRequestProperty("Accept", "application/json");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+                    wr.write(request.toString());
+                    wr.flush();
+
+                    int HttpResult = conn.getResponseCode();
+                    if (HttpResult == HttpURLConnection.HTTP_OK) {
+                        BufferedReader br = new BufferedReader(
+                                new InputStreamReader(conn.getInputStream(), "utf-8"));
+                        String line = null;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        br.close();
+                        Log.d("Database", "" + sb.toString());
+                    } else {
+                        Log.d("Database", conn.getResponseMessage());
+                    }
 
 
-            String params = "username=" + username + "&password=" + password + "&email=" + email;
-
-            DataOutputStream output = new DataOutputStream(conn.getOutputStream());
-            output.writeBytes(params);
-            output.flush();
-            output.close();
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+                } catch (Exception e) {
+                    Log.d("Database", "Error opening connection");
+                    e.printStackTrace();
+                    Log.e("Database", e.toString());
+                }
+                    String response = sb.toString();
+                    return response;
             }
-            in.close();
-
-            System.out.println(response.toString());
-        } catch (Exception e) {
-            System.out.println("Error creating user");
+        };
+        JSONObject json = null;
+        try {
+            json = new JSONObject(task.execute("").get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException je) {
+            je.printStackTrace();
         }
+        return json;
+    }
+
+    public void TcreateUser(String username, String password, String email) {
+        final String USERNAME = username;
+        final String PASSWORD = password;
+        final String EMAIL = email;
+            AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
+                @Override
+                protected String doInBackground(String... params) {
+                    try {
+                        HttpURLConnection conn = null;
+                        URL url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com/createUser");
+                        conn = (HttpURLConnection) url.openConnection();
+
+                        conn.setRequestMethod("POST");
+                        conn.setRequestProperty("Content-Type", "application/json");
+                        conn.setRequestProperty("Accept", "application/json");
+                        conn.setDoOutput(true);
+                        conn.setDoInput(true);
+
+                        JSONObject user = new JSONObject();
+                        user.put("username", params[0]);
+                        user.put("password", params[1]);
+                        user.put("password_confirmation", params[1]);
+                        user.put("email", params[2]);
+
+                        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+                        wr.write(user.toString());
+                        wr.flush();
+
+                        StringBuilder sb = new StringBuilder();
+                        int HttpResult = conn.getResponseCode();
+                        if (HttpResult == HttpURLConnection.HTTP_OK) {
+                            BufferedReader br = new BufferedReader(
+                                    new InputStreamReader(conn.getInputStream(), "utf-8"));
+                            String line = null;
+                            while ((line = br.readLine()) != null) {
+                                sb.append(line + "\n");
+                            }
+                            br.close();
+                            Log.d("Database", "" + sb.toString());
+                        } else {
+                            Log.d("Database", conn.getResponseMessage());
+                        }
+
+
+                    } catch (Exception e) {
+                        Log.d("Database", "Error opening connection");
+                        e.printStackTrace();
+                        Log.e("Database", e.toString());
+                    }
+                    return null;
+                }
+            };
+        task.execute(USERNAME, PASSWORD, EMAIL);
+
+    }
+
+    public User createUser(String username, String password, String email) {
+        JSONObject user = new JSONObject();
+        User result;
+        try {
+            user.put("username", username);
+            user.put("password", password);
+            user.put("password_confirmation", password);
+            user.put("email", email);
+
+            JSONObject response = makePostRequest("/createUser", user);
+            Log.d("Database", response.toString());
+            result = new User(response.getString("id"), response.getString("username"), response.getString("email"));
+        }
+        catch (JSONException je) {
+            result = null;
+            je.printStackTrace();
+        }
+        return result;
     }
 
     public void setTrophyCase(List<Badge> trophyCase)
@@ -118,10 +233,11 @@ public class Database {
         HttpURLConnection conn = null;
         try {
 
-            url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com/createUser");
+            url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com/createBadge");
             conn = (HttpURLConnection) url.openConnection();
         } catch (Exception e) {
             System.out.println("Error opening connection");
+            e.printStackTrace();
         }
 
         try {
@@ -149,7 +265,8 @@ public class Database {
 
             System.out.println(response.toString());
         } catch (Exception e) {
-            System.out.println("Error creating user");
+            System.out.println("Error creating badge");
+            e.printStackTrace();
         }
     }
 

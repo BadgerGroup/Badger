@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,12 +60,14 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
             case R.id.signUpButton:
                 String u = uText.getText().toString();
                 String email = mailText.getText().toString();
-                //String pw = pwText.getText().toString();
-                //creates User using info from sign up screen
-                LoginCredentials.newUser = new User();
-                LoginCredentials.newUser.setUserName(u);
+                String pw = pwText.getText().toString();
+
+                Database db = new Database();
+                User user = db.createUser(u, pw, email);
+
+                Log.d("Database", user.getEmailAddress());
+
                 startActivity(new Intent(this, Profile.class));
-                // startActivity(new Intent(this, Profile.class));
         }
     }
 }
