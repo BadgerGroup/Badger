@@ -104,8 +104,7 @@ public class Database {
             user.put("email", email);
 
             JSONObject response = makePostRequest("/createUser", user);
-
-            if (response.getString("error") != null) {
+            if (!response.isNull("error")) {
                 Log.e("Database", response.getString("error"));
                 throw new IllegalArgumentException(response.getString("error"));
             }
@@ -114,6 +113,7 @@ public class Database {
         }
         catch (JSONException je) {
             result = null;
+            Log.e("Database", je.getMessage());
             je.printStackTrace();
         }
         return result;

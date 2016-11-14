@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,11 +45,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
         TextView usernameText = (TextView) findViewById(R.id.usernameTextView);
-        BadgerApp app = (BadgerApp) getApplication();
-        User user = app.getCurrentUser();
-        if (user != null) {
-            usernameText.setText(user.getUserName());
-        }
 
         Button badges = (Button) findViewById(R.id.badgesButton);
         badges.setOnClickListener(this);
@@ -71,14 +67,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
 
-        //sets Profile name to User or friend's name
-        if (FriendSearch.isFriend() == false) {
-            String userName = LoginCredentials.newUser.getUserName();
-            toolbar.setTitle("" + userName + "'s Profile");
+        BadgerApp app = (BadgerApp) getApplication();
+        User user = app.getCurrentUser();
+        if (user != null) {
+            usernameText.setText(user.getUserName());
+            toolbar.setTitle(user.getUserName() + "'s Profile");
         }
-        else{
-            String fName = FriendSearch.getFriendName();
-            toolbar.setTitle("" + fName + "'s Profile");
+        else {
+            Log.e("Database", "User is null.");
         }
 
         toolbar.setTitleTextColor(Color.BLACK);

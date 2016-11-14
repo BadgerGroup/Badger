@@ -9,10 +9,10 @@ public class BadgerApp extends Application {
     private User currentUser;
 
     public void setCurrentUser(User user) {
-        currentUser = user;
+        this.currentUser = user;
     }
 
     public User getCurrentUser() {
-        return currentUser;
+        return this.currentUser;
     }
 }
