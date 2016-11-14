@@ -1,7 +1,6 @@
 package seniorproject.badger;
 
 import android.os.AsyncTask;
-import android.util.JsonReader;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,8 +15,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-
-import org.apache.http.*;
 
 /**
  * Library class for communicating with BadgerAPI.
