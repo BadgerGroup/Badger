@@ -4,11 +4,13 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="User Name"
+        android:hint="Friend's User Name"
         android:ems="10"
         android:id="@+id/friendText"
         android:layout_weight="0.02"

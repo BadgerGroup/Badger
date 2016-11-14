@@ -18,10 +18,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static android.R.interpolator.linear;
+
 
 public class FriendsList extends AppCompatActivity implements View.OnClickListener {
-
+    public static ArrayList<User> allFriends = new ArrayList<User>();
 
     @SuppressWarnings("ResourceType")
     @Override
@@ -33,10 +33,6 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         createButtons();
-
-
-
-
           //tabs for all and close friends- most likely to be deleted
 //        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
 //        tabHost.setup();
@@ -55,32 +51,31 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
     }
 
     private void createButtons() {
-        int size = FriendSearch.allFriends.size();
-        for (int i = 0; i <= size - 1; i++) {
+        int size = allFriends.size();
             LinearLayout layout = (LinearLayout) findViewById(R.id.content_friends_list);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
 
             layout.setOrientation(LinearLayout.VERTICAL);
 
-            Button btn = new Button(this);
-
             for (int j = 0; j <= size - 1; j++) {
-                String name = FriendSearch.allFriends.get(j).getUserName();
+                Button btn = new Button(this);
+                String name = allFriends.get(j).getUserName();
                 btn.setText(name);
+                final int user = j;
 
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //goes to this friend's profile page
                         FriendSearch.setIsFriend(true);
+                        String fName = allFriends.get(user).getUserName();
+                        FriendSearch.setFriendName(fName);
                         startActivity(new Intent(FriendsList.this, Profile.class));
                     }
                 });
                 layout.addView(btn);
             }
-
-        }
     }
 
 
