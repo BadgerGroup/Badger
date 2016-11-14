@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView;
 
@@ -41,6 +42,13 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 //        imgClick5.setOnClickListener(this);
 
 
+
+        TextView usernameText = (TextView) findViewById(R.id.usernameTextView);
+        BadgerApp app = (BadgerApp) getApplication();
+        User user = app.getCurrentUser();
+        if (user != null) {
+            usernameText.setText(user.getUserName());
+        }
 
         Button badges = (Button) findViewById(R.id.badgesButton);
         badges.setOnClickListener(this);

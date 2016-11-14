@@ -27,10 +27,6 @@ public class User {
         return emailAddress;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -39,9 +35,6 @@ public class User {
         this.emailAddress = email;
     }
 
-    public void setPassword(String pw) {
-        this.password = pw;
-    }
 
     public void setUserName(String name) {
         this.userName = name;

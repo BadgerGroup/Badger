@@ -14,10 +14,10 @@
     tools:showIn="@layout/activity_profile">
 
     <TextView
-        android:text="User Full Name Here"
+        android:text="Username Here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fullNameTextView"
+        android:id="@+id/usernameTextView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -32,9 +32,9 @@
         android:layout_alignParentStart="true"
         android:id="@+id/profileImage"
         android:scaleType="fitXY"
-        android:layout_below="@+id/fullNameTextView"
-        android:layout_alignRight="@+id/fullNameTextView"
-        android:layout_alignEnd="@+id/fullNameTextView"
+        android:layout_below="@+id/usernameTextView"
+        android:layout_alignRight="@+id/usernameTextView"
+        android:layout_alignEnd="@+id/usernameTextView"
         android:layout_alignBottom="@+id/groupsButton" />
 
     <Button
@@ -84,7 +84,7 @@
         android:id="@+id/badgesButton"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
-        android:layout_below="@+id/fullNameTextView"
+        android:layout_below="@+id/usernameTextView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_width="150dp" />

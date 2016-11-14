@@ -64,8 +64,8 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
 
                 Database db = new Database();
                 User user = db.createUser(u, pw, email);
-
-                Log.d("Database", user.getEmailAddress());
+                BadgerApp app = (BadgerApp) getApplication();
+                app.setCurrentUser(user);
 
                 startActivity(new Intent(this, Profile.class));
         }
