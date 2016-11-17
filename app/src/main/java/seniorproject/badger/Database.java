@@ -65,7 +65,7 @@ public class Database {
                                 new InputStreamReader(conn.getInputStream(), "utf-8"));
                         String line;
                         while ((line = br.readLine()) != null) {
-                            sb.append(line + "\n");
+                            sb.append(line).append("\n");
                         }
                         br.close();
                         Log.d("Database", "Retrieved: " + sb.toString());
@@ -134,7 +134,7 @@ public class Database {
                 throw new IllegalArgumentException(response.getString("error"));
             }
 
-            result = new User(response.getString("id"), response.getString("username"), response.getString("email"));
+            result = new User(response);
         }
         catch (JSONException je) {
             result = null;
@@ -143,17 +143,12 @@ public class Database {
         return result;
     }
 
-    public void setTrophyCase(List<Badge> trophyCase)
-    {
-
-    }
-
     /**
      * Adds the user with id `friendID` to the given user's friends list. The API will automatically
      * to the same thing in the reverse direction - the user with id `userID` will be added as a
      * friend of the other user.
-     * @param userID
-     * @param friendID
+     * @param userID the user
+     * @param friendID the friend
      */
     public boolean addFriend(String userID, String friendID) throws UserNotFoundException
     {
@@ -190,9 +185,29 @@ public class Database {
         return new Badge(response);
     }
 
-    public void createBadge(String name, String img, String description, String authorID)
+    public Badge createBadge(String name, String imgURL, String description, String authorID)
     {
+        JSONObject badge = new JSONObject();
+        Badge result;
+        try {
+            badge.put("badge_name", name);
+            badge.put("image_url", imgURL);
+            badge.put("badge_description", description);
+            badge.put("author_id", authorID);
 
+            JSONObject response = makePostRequest("/createBadge", badge);
+            if (!response.isNull("error")) {
+                Log.e("Database", response.getString("error"));
+                throw new IllegalArgumentException(response.getString("error"));
+            }
+
+            result = new Badge(response);
+        }
+        catch (JSONException je) {
+            result = null;
+            Log.e("Database", Log.getStackTraceString(je));
+        }
+        return result;
     }
 
     public Group getGroup(String groupID)
