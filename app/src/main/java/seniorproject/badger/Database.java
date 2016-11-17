@@ -217,23 +217,22 @@ public class Database {
 
     }
 
-    public User getUser(int userID) throws UserNotFoundException
-    {
-        JSONObject response = makeGetRequest("/readUser", "id=" + userID);
+    public User getUser(String key, String value) throws UserNotFoundException{
+        JSONObject response = makeGetRequest("/readUser", key + "=" + value);
         if (!response.isNull("error")) {
-            throw new UserNotFoundException(("No user found with that id."));
+            throw new UserNotFoundException(("No user found with that " + key + "."));
         }
 
         return new User(response);
     }
 
-    public User getUser(String username) throws UserNotFoundException {
-        JSONObject response = makeGetRequest("/readUser", "username=" + username);
-        if (!response.isNull("error")) {
-            throw new UserNotFoundException(("No user found with that id."));
-        }
+    public User getUser(int userID) throws UserNotFoundException
+    {
+        return getUser("id", String.valueOf(userID));
+    }
 
-        return new User(response);
+    public User getUser(String username) throws UserNotFoundException {
+        return getUser("username", username);
     }
 
     public List<Badge> getTrophyCase(String userID)
