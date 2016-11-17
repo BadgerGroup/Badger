@@ -22,7 +22,6 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
     EditText userText;
     EditText passwordText;
     EditText emailText;
-    public static ArrayList<User> allUsers = new ArrayList<User>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

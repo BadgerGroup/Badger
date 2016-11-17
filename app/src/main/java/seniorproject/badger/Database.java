@@ -85,12 +85,8 @@ public class Database {
         JSONObject json = null;
         try {
             json = new JSONObject(task.execute("").get());
-        } catch (InterruptedException e) {
-            Log.e("Database", e.toString());
-        } catch (ExecutionException e) {
-            Log.e("Database", e.toString());
-        } catch (JSONException je) {
-            Log.e("Database", je.toString());
+        } catch (InterruptedException | ExecutionException | JSONException e) {
+            Log.e("Database", Log.getStackTraceString(e));
         }
         return json;
     }
@@ -172,12 +168,7 @@ public class Database {
             if (!response.isNull("error")) {
                 throw new UserNotFoundException("User and/or friend not found.");
             }
-            else if (response.getString("response").equalsIgnoreCase("success")) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            else return response.getString("response").equalsIgnoreCase("success");
         } catch (JSONException e) {
             Log.e("Database", Log.getStackTraceString(e));
             return false;
