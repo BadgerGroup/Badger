@@ -23,11 +23,6 @@ public class Database {
 
     private static final String API_URL = "http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com";
 
-    public static void main(String[] args) {
-        Database db = new Database();
-        db.createUser("testLibraryUser", "pw", "testLibUser@example.com");
-    }
-
     public Database()
     {
 
@@ -148,8 +143,7 @@ public class Database {
         }
         catch (JSONException je) {
             result = null;
-            Log.e("Database", je.getMessage());
-            je.printStackTrace();
+            Log.e("Database", Log.getStackTraceString(je));
         }
         return result;
     }
@@ -196,10 +190,14 @@ public class Database {
 
     }
 
-    public Badge getBadge(String badgeID)
+    public Badge getBadge(String badgeID) throws BadgeNotFoundException
     {
-        Badge badge = null;
-        return badge;
+        JSONObject response = makeGetRequest("/readBadge",  "id=" + badgeID);
+        if (!response.isNull("error")) {
+            throw new BadgeNotFoundException(("No badge found with that id."));
+        }
+
+        return new Badge(response);
     }
 
     public void createBadge(String name, String img, String description, String authorID)
@@ -235,21 +233,4 @@ public class Database {
         return getUser("username", username);
     }
 
-    public List<Badge> getTrophyCase(String userID)
-    {
-        List<Badge> badges = null;
-        return badges;
-    }
-
-    public List<Badge> getSentBadges(String userID)
-    {
-        List<Badge> badges = null;
-        return badges;
-    }
-
-    public List<Badge> getReceivedBadges(String userID)
-    {
-        List<Badge> badges = null;
-        return badges;
-    }
 }

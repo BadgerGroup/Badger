@@ -1,17 +1,33 @@
 package seniorproject.badger;
 
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Badge  {
 
+    private String id;
     private String badgeName;
     private String authorID;
     private String recipientID;
     private String imageURL;
     private String description;
 
-    public Badge(){
-
+    public Badge(JSONObject json){
+        try {
+            id = json.getString("id");
+            badgeName = json.getString("badge_name");
+            authorID = json.getString("author_id");
+            recipientID = json.getString("recipient_id");
+            imageURL = json.getString("image_url");
+            description = json.getString("badge_description");
+        } catch (JSONException e) {
+            Log.e("Database", e.toString());
+        } catch (NullPointerException npe) {
+            Log.e("Database", npe.toString());
+        }
     }
 
     public Badge(String name, String author, String recp, String url, String descr){
