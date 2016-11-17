@@ -73,14 +73,15 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
                 try {
                     User user = db.login(username, password);
                     ((BadgerApp) getApplication()).setCurrentUser(user);
+                    startActivity(new Intent(this, Profile.class));
+                    break;
                 }
                 catch (IllegalArgumentException e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
                     return;
                 }
                 //Right now, immediately go to profile
-                startActivity(new Intent(this, Profile.class));
-                break;
+
         }
     }
 }

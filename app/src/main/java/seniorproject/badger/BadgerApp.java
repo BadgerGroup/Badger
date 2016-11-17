@@ -6,13 +6,23 @@ import android.app.Application;
  * Created by Kevin on 11/14/2016.
  */
 public class BadgerApp extends Application {
-    private User currentUser;
+    static private User currentUser;
+    private User friendUser;
+
+    public User getFriendUser() {
+        return friendUser;
+    }
+
+    public void setFriendUser(User friendUser) {
+        this.friendUser = friendUser;
+    }
+
 
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
 
-    public User getCurrentUser() {
-        return this.currentUser;
+    static public User getCurrentUser() {
+        return currentUser;
     }
 }

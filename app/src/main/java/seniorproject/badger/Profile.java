@@ -49,6 +49,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         Button badges = (Button) findViewById(R.id.badgesButton);
         badges.setOnClickListener(this);
 
+        Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
+
+        BadgerApp app = (BadgerApp) getApplication();
+        User user = app.getCurrentUser();
+        User friend = app.getFriendUser();
+
         //sets give badge button visible if this is friend's page
         if (FriendSearch.isFriend() == true) {
             Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
@@ -56,6 +62,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             Button friends = (Button) findViewById(R.id.groupsButton);
             friends.setVisibility(View.GONE);
+
+            usernameText.setText(friend.getUserName());
+            toolbar.setTitle(friend.getUserName() + "'s Profile");
         }
         else{
             Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
@@ -63,19 +72,23 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             Button friends = (Button) findViewById(R.id.groupsButton);
             friends.setOnClickListener(this);
-        }
 
-        Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
-
-        BadgerApp app = (BadgerApp) getApplication();
-        User user = app.getCurrentUser();
-        if (user != null) {
             usernameText.setText(user.getUserName());
             toolbar.setTitle(user.getUserName() + "'s Profile");
         }
-        else {
-            Log.e("Database", "User is null.");
-        }
+
+
+
+//        BadgerApp app = (BadgerApp) getApplication();
+//        User user = app.getCurrentUser();
+//        User friend = app.getFriendUser();
+//        if (user != null) {
+//            usernameText.setText(user.getUserName());
+//            toolbar.setTitle(user.getUserName() + "'s Profile");
+//        }
+//        else {
+//            Log.e("Database", "User is null.");
+//        }
 
         toolbar.setTitleTextColor(Color.BLACK);
         toolbar.showOverflowMenu();
@@ -92,6 +105,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     {
         switch(item.getItemId()){
             case R.id.friendsOption:
+                FriendSearch.setIsFriend(false);
                 startActivity(new Intent(this, FriendsList.class));
                 break;
 

@@ -60,8 +60,18 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
                 String fName = name.getText().toString();
                 Database db = new Database();
                 try {
+                    User user = BadgerApp.getCurrentUser();
                     User friend = db.getUser(fName);
                     Log.d("Database", "Mactched user: " + friend.getUserName());
+                    String uID = user.getId();
+                    String fID = friend.getId();
+                    db.addFriend(uID, fID);
+                    user = db.getUser(uID);
+                    friend = db.getUser(fName);
+                    ((BadgerApp) getApplication()).setCurrentUser(user);
+                    ((BadgerApp) getApplication()).setFriendUser(friend);
+                    startActivity(new Intent(this, FriendsList.class));
+
                 }
                 catch (UserNotFoundException unfe) {
                     //creates popup window
@@ -96,9 +106,9 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
         friendName = fName;
     }
 
-    public static ArrayList<User> getAllFriends() {
-        return FriendsList.allFriends;
-    }
+    //public static ArrayList<User> getAllFriends() {
+    //    return FriendsList.allFriends;
+    //}
 
     public static String getFriendName(){
         return friendName;

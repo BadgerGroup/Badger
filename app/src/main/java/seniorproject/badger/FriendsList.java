@@ -17,11 +17,11 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 
 public class FriendsList extends AppCompatActivity implements View.OnClickListener {
-    public static ArrayList<User> allFriends = new ArrayList<User>();
+    public ArrayList<String> allFriends = new ArrayList<String>();
 
     @SuppressWarnings("ResourceType")
     @Override
@@ -31,6 +31,7 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         createButtons();
           //tabs for all and close friends- most likely to be deleted
@@ -51,7 +52,11 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
     }
 
     private void createButtons() {
-        int size = allFriends.size();
+        //allFriends = (ArrayList<String>) Arrays.asList(User.getFriendIds());
+
+
+        User cUser = ((BadgerApp) getApplication()).getCurrentUser();
+        int size = cUser.getFriendIds().length;
             LinearLayout layout = (LinearLayout) findViewById(R.id.content_friends_list);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
@@ -59,22 +64,37 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
             layout.setOrientation(LinearLayout.VERTICAL);
 
             for (int j = 0; j <= size - 1; j++) {
+                Database db = new Database();
                 Button btn = new Button(this);
-                String name = allFriends.get(j).getUserName();
-                btn.setText(name);
-                final int user = j;
+                String fID = cUser.getFriendIds()[j];
+                final int friendID = Integer.parseInt(fID);
+                try {
+                    String name = db.getUser(friendID).getUserName();
+                    btn.setText(name);
 
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //goes to this friend's profile page
-                        FriendSearch.setIsFriend(true);
-                        String fName = allFriends.get(user).getUserName();
-                        FriendSearch.setFriendName(fName);
-                        startActivity(new Intent(FriendsList.this, Profile.class));
-                    }
-                });
-                layout.addView(btn);
+                    final User fUser = db.getUser(friendID);
+
+                    final int user = j;
+
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //goes to this friend's profile page
+                            FriendSearch.setIsFriend(true);
+
+                            ((BadgerApp) getApplication()).setFriendUser(fUser);
+                            String fName = fUser.getUserName();
+                            //FriendSearch.setFriendName(fName);
+                            startActivity(new Intent(FriendsList.this, Profile.class));
+                        }
+                    });
+                    layout.addView(btn);
+                }
+                catch (UserNotFoundException unfe){
+
+                }
+
+
             }
     }
 

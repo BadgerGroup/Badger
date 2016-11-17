@@ -11,7 +11,6 @@ public class User {
 
     private String userName;
     private String emailAddress;
-
     private String id;
     private String[] groupIds;
     private String[] friendIds;
@@ -114,5 +113,13 @@ public class User {
 
     public String[] getFriendIds() {
         return friendIds;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
