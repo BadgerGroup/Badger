@@ -47,11 +47,11 @@ public class Database {
                     URL url = new URL(strUrl);
                     conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestProperty("Accept", "application/json");
-                    conn.setDoOutput(true);
-                    conn.setDoInput(true);
 
                     switch (httpMethod) {
                         case "POST":
+                            conn.setDoOutput(true);
+                            conn.setDoInput(true);
                             conn.setRequestMethod("POST");
                             conn.setRequestProperty("Content-Type", "application/json");
                             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -74,7 +74,7 @@ public class Database {
                             sb.append(line + "\n");
                         }
                         br.close();
-                        Log.d("Database", "" + sb.toString());
+                        Log.d("Database", "Retrieved: " + sb.toString());
                     } else {
                         Log.d("Database", "HTTP Result was NOT OK");
                         Log.d("Database", "HTTP RESPONSE: " + HttpResult);
@@ -92,11 +92,11 @@ public class Database {
         try {
             json = new JSONObject(task.execute("").get());
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.e("Database", e.toString());
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            Log.e("Database", e.toString());
         } catch (JSONException je) {
-            je.printStackTrace();
+            Log.e("Database", je.toString());
         }
         return json;
     }
@@ -109,7 +109,7 @@ public class Database {
         return makeRequest("POST", endpoint, null, json);
     }
 
-    public User login(String username, String password) {
+    public User login(String username, String password) throws IllegalArgumentException {
         JSONObject userLogin = new JSONObject();
         User result;
         try {
@@ -117,7 +117,7 @@ public class Database {
             userLogin.put("password", password);
 
             JSONObject response = makePostRequest("/login", userLogin);
-            if (!response.isNull("error")) {
+            if (!response.isNull("error")) { // check for presence of error
                 Log.e("Database", response.getString("error"));
                 throw new IllegalArgumentException(response.getString("error"));
             }
@@ -159,50 +159,41 @@ public class Database {
 
     }
 
-    public void addFriend(String email)
+    /**
+     * Adds the user with id `friendID` to the given user's friends list. The API will automatically
+     * to the same thing in the reverse direction - the user with id `userID` will be added as a
+     * friend of the other user.
+     * @param userID
+     * @param friendID
+     */
+    public boolean addFriend(String userID, String friendID) throws UserNotFoundException
     {
+        JSONObject request = new JSONObject();
 
+        try {
+            request.put("user_id", userID);
+            request.put("friend_id", friendID);
+
+            JSONObject response = makePostRequest("/addFriend", request);
+
+            if (!response.isNull("error")) {
+                throw new UserNotFoundException("User and/or friend not found.");
+            }
+            else if (response.getString("response").equalsIgnoreCase("success")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (JSONException e) {
+            Log.e("Database", Log.getStackTraceString(e));
+            return false;
+        }
     }
 
     public void createGroup(String groupname, String description, String admin_id)
     {
-        URL url = null;
-        HttpURLConnection conn = null;
-        try {
 
-            url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com/createGroup");
-            conn = (HttpURLConnection) url.openConnection();
-        } catch (Exception e) {
-            System.out.println("Error opening connection");
-        }
-
-        try {
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-
-
-            String params = "groupName=" + groupname + "&groupDescription="
-                    + description + "&admin_id=" + admin_id;
-
-            DataOutputStream output = new DataOutputStream(conn.getOutputStream());
-            output.writeBytes(params);
-            output.flush();
-            output.close();
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            System.out.println(response.toString());
-        } catch (Exception e) {
-            System.out.println("Error creating group");
-        }
     }
 
     public Badge getBadge(String badgeID)
@@ -213,138 +204,31 @@ public class Database {
 
     public void createBadge(String name, String img, String description, String authorID)
     {
-        URL url = null;
-        HttpURLConnection conn = null;
-        try {
 
-            url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com/createBadge");
-            conn = (HttpURLConnection) url.openConnection();
-        } catch (Exception e) {
-            System.out.println("Error opening connection");
-            e.printStackTrace();
-        }
-
-        try {
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-
-
-            String params = "badge_name=" + name + "&image_url=" + img +
-                    "&badge_description=" + description + "&author_id=" + authorID;
-
-            DataOutputStream output = new DataOutputStream(conn.getOutputStream());
-            output.writeBytes(params);
-            output.flush();
-            output.close();
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            System.out.println(response.toString());
-        } catch (Exception e) {
-            System.out.println("Error creating badge");
-            e.printStackTrace();
-        }
     }
 
     public Group getGroup(String groupID)
     {
-        Group group = null;
-
-        URL url = null;
-        HttpURLConnection conn = null;
-        User user = null;
-        try
-        {
-            url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com" +
-                    "/readGroup?id=" + groupID);
-            conn = (HttpURLConnection) url.openConnection();
-        }
-        catch(Exception e)
-        {
-            System.out.println("Error opening connection");
-        }
-        try {
-            conn.setRequestMethod("GET");
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            //print result
-            System.out.println(response.toString());
-
-        }
-        catch(Exception e)
-        {
-            System.out.println("Error reading group");
-        }
-
-
-        return group;
+        return null;
     }
 
     public void addUserToGroup(String userID, String groupID)
     {
-        URL url = null;
-        HttpURLConnection conn = null;
-        try {
 
-            url = new URL("http://sample-env.e3rxnzanmm.us-west-2.elasticbeanstalk.com/" +
-                    "addUserToGroup");
-            conn = (HttpURLConnection) url.openConnection();
-        } catch (Exception e) {
-            System.out.println("Error opening connection");
-        }
-
-        try {
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-
-
-            String params = "user_id=" + userID + "&group_id=" + groupID;
-
-            DataOutputStream output = new DataOutputStream(conn.getOutputStream());
-            output.writeBytes(params);
-            output.flush();
-            output.close();
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            System.out.println(response.toString());
-        } catch (Exception e) {
-            System.out.println("Error adding user to group");
-        }
     }
 
     public User getUser(int userID)
     {
-        return null;
+        return new User(makeGetRequest("/readUser", "id=" + userID));
     }
 
-    public User getUser(String username) {
-        return new User(makeGetRequest("/readUser", "username=" + username));
+    public User getUser(String username) throws UserNotFoundException {
+        User user = new User(makeGetRequest("/readUser", "username=" + username));
+        if (user == null) {
+            throw new UserNotFoundException("No user found with that username.");
+        }
+
+        return user;
     }
 
     public List<Badge> getTrophyCase(String userID)

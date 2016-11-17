@@ -1,6 +1,7 @@
 package seniorproject.badger;
 
 
+import android.app.Application;
 import android.app.LocalActivityManager;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,27 +58,15 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
             case R.id.searchButton:
                 //will need to change once we cna get friends info from database
                 String fName = name.getText().toString();
-                int size = LoginCredentials.allUsers.size();
-                ArrayList<String> names = new ArrayList<String>(size);
-                for(int i = 0; i <= size -1 ; i++){
-                    names.add(LoginCredentials.allUsers.get(i).getUserName());
-
+                Database db = new Database();
+                try {
+                    User friend = db.getUser(fName);
+                    Log.d("Database", "Mactched user: " + friend.getUserName());
                 }
-                boolean found = names.contains(fName);
-                if (found){
-                    isFriend = true;
-                    User friend = new User();
-                    friend.setUserName(fName);
-                    FriendsList.allFriends.add(friend);
-
-                    //if found back to FriendsList
-                    startActivity(new Intent(this, FriendsList.class));
-                    break;
-                }
-                else {
+                catch (UserNotFoundException unfe) {
                     //creates popup window
                     AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-                    dlgAlert.setMessage("No user found with that username");
+                    dlgAlert.setMessage(unfe.getMessage());
                     dlgAlert.setTitle("Try Again");
                     dlgAlert.setPositiveButton("OK", null);
                     dlgAlert.setCancelable(true);
@@ -90,8 +80,6 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
                             });
                 }
                 break;
-
-
         }
     }
 

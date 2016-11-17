@@ -22,12 +22,6 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
     EditText userText;
     EditText passwordText;
     EditText emailText;
-    public static User newUser = new User();
-    public static User user1 = new User();
-    public static User user2 = new User();
-    public static User user3 = new User();
-    public static User user4 = new User();
-    public static User user5 = new User();
     public static ArrayList<User> allUsers = new ArrayList<User>();
 
     @Override
@@ -52,21 +46,6 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
         signInButton.setOnClickListener(this);
 
         FriendSearch.setIsFriend(false);
-
-        //create dummy users for testing
-        user1.setUserName("user1");
-        user2.setUserName("user2");
-        user3.setUserName("user3");
-        user4.setUserName("user4");
-        user5.setUserName("user5");
-
-        //put users in array (just String of user names for now)
-        allUsers.add(user1);
-        allUsers.add(user2);
-        allUsers.add(user3);
-        allUsers.add(user4);
-        allUsers.add(user5);
-
 
     }
 

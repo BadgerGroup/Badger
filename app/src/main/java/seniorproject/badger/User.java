@@ -14,6 +14,7 @@ public class User {
 
     private String id;
     private String[] groupIds;
+    private String[] friendIds;
     private String[] ownedGroups;
     private String[] badgeIds;
     private String[] receivedBadges;
@@ -30,20 +31,32 @@ public class User {
             userName = json.getString("username");
             emailAddress = json.getString("email");
 
-            JSONArray badgeArray = json.getJSONArray("badge_ids");
-            badgeIds = new String[badgeArray.length()];
-            for (int i = 0; i < badgeArray.length(); i++) {
-                badgeIds[i] = badgeArray.getString(i);
-            }
+            this.friendIds = toArray( json.getJSONArray("friend_ids") );
+            this.badgeIds = toArray( json.getJSONArray("badge_ids") );
+            this.receivedBadges = toArray( json.getJSONArray("trophy_case") );
 
-            JSONArray trophyCase = json.getJSONArray("trophy_case");
-            receivedBadges = new String[trophyCase.length()];
-            for (int i = 0; i < trophyCase.length(); i++) {
-                receivedBadges[i] = trophyCase.getString(i);
-            }
         } catch (JSONException e) {
             Log.e("Database", e.toString());
+        } catch (NullPointerException npe) {
+            Log.e("Database", npe.toString());
         }
+    }
+
+    private String[] toArray(JSONArray json) {
+        String[] result = null;
+        try {
+            if (json == null) {
+                throw new IllegalArgumentException("toArray() received null JSONArray.");
+            }
+            result = new String[json.length()];
+            for (int i = 0; i < json.length(); i++) {
+                result[i] = json.getString(i);
+            }
+        }
+        catch (JSONException je) {
+            Log.e("Database", Log.getStackTraceString(je));
+        }
+        return result;
     }
 
     public User() {
@@ -97,5 +110,9 @@ public class User {
 
     public void setReceivedBadges(String[] receivedBadges) {
         this.receivedBadges = receivedBadges;
+    }
+
+    public String[] getFriendIds() {
+        return friendIds;
     }
 }
