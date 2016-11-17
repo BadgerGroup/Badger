@@ -77,6 +77,7 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
                 }
                 catch (IllegalArgumentException e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
                 }
                 //Right now, immediately go to profile
                 startActivity(new Intent(this, Profile.class));
