@@ -61,6 +61,7 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
                 Database db = new Database();
                 try {
                     User user = BadgerApp.getCurrentUser();
+
                     User friend = db.getUser(fName);
                     Log.d("Database", "Mactched user: " + friend.getUserName());
                     String uID = user.getId();
@@ -69,7 +70,8 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(getApplicationContext(), "User is already added as friend.", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    user = db.getUser(uID);
+                    Log.d("Database", uID);
+                    user = db.getUser(Integer.valueOf(uID));
                     friend = db.getUser(fName);
                     ((BadgerApp) getApplication()).setCurrentUser(user);
                     ((BadgerApp) getApplication()).setFriendUser(friend);

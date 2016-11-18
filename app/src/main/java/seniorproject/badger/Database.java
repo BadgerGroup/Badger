@@ -49,9 +49,11 @@ public class Database {
                             conn.setRequestMethod("POST");
                             conn.setRequestProperty("Content-Type", "application/json");
                             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+                            Log.d("Database", "Request: " + request.toString());
                             wr.write(request.toString());
                             wr.flush(); break;
                         case "GET":
+                            Log.d("Database", query);
                             break;
                         default:
                             Exception e = new IllegalArgumentException("Invalid HTTP method given to makeRequest.");
