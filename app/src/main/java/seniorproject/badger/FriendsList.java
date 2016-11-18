@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,7 @@ import java.util.Arrays;
 
 
 public class FriendsList extends AppCompatActivity implements View.OnClickListener {
-    public ArrayList<String> allFriends = new ArrayList<String>();
+    public ArrayList<String> allFriends = new ArrayList<>();
 
     @SuppressWarnings("ResourceType")
     @Override
@@ -55,7 +56,7 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
         //allFriends = (ArrayList<String>) Arrays.asList(User.getFriendIds());
 
 
-        User cUser = ((BadgerApp) getApplication()).getCurrentUser();
+        User cUser = BadgerApp.getCurrentUser();
         int size = cUser.getFriendIds().length;
             LinearLayout layout = (LinearLayout) findViewById(R.id.content_friends_list);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -74,8 +75,6 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
 
                     final User fUser = db.getUser(friendID);
 
-                    final int user = j;
-
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -91,7 +90,7 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
                     layout.addView(btn);
                 }
                 catch (UserNotFoundException unfe){
-
+                    Log.e("Database", Log.getStackTraceString(unfe));
                 }
 
 

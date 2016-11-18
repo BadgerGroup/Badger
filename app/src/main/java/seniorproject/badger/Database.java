@@ -42,7 +42,7 @@ public class Database {
                     conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestProperty("Accept", "application/json");
 
-                    switch (httpMethod) {
+                    switch (httpMethod.toUpperCase()) {
                         case "POST":
                             conn.setDoOutput(true);
                             conn.setDoInput(true);
@@ -149,6 +149,9 @@ public class Database {
      * friend of the other user.
      * @param userID the user
      * @param friendID the friend
+     *
+     * @return true if the friend addition was successful. False if the users are already friends.
+     * Throws an exception if a user does not exist.
      */
     public boolean addFriend(String userID, String friendID) throws UserNotFoundException
     {
@@ -157,11 +160,25 @@ public class Database {
         try {
             request.put("user_id", userID);
             request.put("friend_id", friendID);
+            Log.d("Database", request.toString());
 
             JSONObject response = makePostRequest("/addFriend", request);
 
+            if (response == null) {
+                Log.e("Database", "Received null response from API.");
+                return false;
+            }
+
             if (!response.isNull("error")) {
-                throw new UserNotFoundException("User and/or friend not found.");
+                if (response.getString("error").equals("User and/or friend not found.")) {
+                    UserNotFoundException e = new UserNotFoundException(response.getString("error"));
+                    Log.e("Database", Log.getStackTraceString(e));
+                    throw e;
+                }
+                else {
+                    Log.e("Database", response.getString("error"));
+                    return false;
+                }
             }
             else return response.getString("response").equalsIgnoreCase("success");
         } catch (JSONException e) {

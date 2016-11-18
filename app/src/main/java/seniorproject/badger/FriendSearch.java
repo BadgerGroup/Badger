@@ -65,7 +65,10 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
                     Log.d("Database", "Mactched user: " + friend.getUserName());
                     String uID = user.getId();
                     String fID = friend.getId();
-                    db.addFriend(uID, fID);
+                    if (!db.addFriend(uID, fID)) {
+                        Toast.makeText(getApplicationContext(), "User is already added as friend.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     user = db.getUser(uID);
                     friend = db.getUser(fName);
                     ((BadgerApp) getApplication()).setCurrentUser(user);
