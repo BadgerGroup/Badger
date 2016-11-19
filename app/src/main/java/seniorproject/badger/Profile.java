@@ -1,6 +1,7 @@
 package seniorproject.badger;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView;
+import java.io.InputStream;
+import android.graphics.BitmapFactory;
+
+
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
@@ -75,6 +80,27 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             usernameText.setText(user.getUserName());
             toolbar.setTitle(user.getUserName() + "'s Profile");
+
+            String[] badgeIDs = user.getBadgeIds();
+            if(badgeIDs.length > 0)
+            {
+                try {
+                    Database db = new Database();
+
+                    Badge badge1 = db.getBadge(badgeIDs[0]);
+                    ImageView badgeView1 = (ImageView) findViewById(R.id.badgeView1);
+                    badgeView1.setImageBitmap(getImageFromURL(badge1.getImageURL()));
+                    badgeView1.setOnClickListener(this);
+                }
+                catch (BadgeNotFoundException e)
+                {
+                    Log.d("Prefix", "Error getting badges");
+                }
+            }
+            else
+            {
+                Log.d("Prefix", "No badges found");
+            }
         }
 
 
@@ -93,6 +119,25 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         toolbar.setTitleTextColor(Color.BLACK);
         toolbar.showOverflowMenu();
         setSupportActionBar(toolbar);
+    }
+
+
+    /**
+     * Get the URL for a particular badge
+     */
+    private Bitmap getImageFromURL(String url)
+    {
+        Bitmap icon = null;
+
+        try {
+            InputStream in = new java.net.URL(url).openStream();
+            icon = BitmapFactory.decodeStream(in);
+        } catch(Exception e)
+        {
+            //Log.e("Error getting image", e.getMessage());
+            //e.printStackTrace();
+        }
+        return icon;
     }
 
     @Override
@@ -144,9 +189,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             //For trophy case
 
-//            case R.id.badgeView1:
-//                startActivity(new Intent(this, Badge.class));
-//                break;
+            case R.id.badgeView1:
+                startActivity(new Intent(this, Badge.class));
+                break;
 //
 //            case R.id.badgeView2:
 //                startActivity(new Intent(this, Badge.class));

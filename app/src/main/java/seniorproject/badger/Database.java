@@ -204,7 +204,8 @@ public class Database {
         return new Badge(response);
     }
 
-    public Badge createBadge(String name, String imgURL, String description, String authorID)
+    public Badge createBadge(String name, String imgURL, String description, String authorID,
+                             String recipientID)
     {
         JSONObject badge = new JSONObject();
         Badge result;
@@ -213,8 +214,36 @@ public class Database {
             badge.put("image_url", imgURL);
             badge.put("badge_description", description);
             badge.put("author_id", authorID);
+            badge.put("recipient_id", recipientID);
 
             JSONObject response = makePostRequest("/createBadge", badge);
+            if (!response.isNull("error")) {
+                Log.e("Database", response.getString("error"));
+                throw new IllegalArgumentException(response.getString("error"));
+            }
+
+            result = new Badge(response);
+        }
+        catch (JSONException je) {
+            result = null;
+            Log.e("Database", Log.getStackTraceString(je));
+        }
+        return result;
+    }
+
+    public Badge updateBadge(String name, String imgURL, String description, String authorID,
+                             String recipientID)
+    {
+        JSONObject badge = new JSONObject();
+        Badge result;
+        try {
+            badge.put("badge_name", name);
+            badge.put("image_url", imgURL);
+            badge.put("badge_description", description);
+            badge.put("author_id", authorID);
+            badge.put("recipient_id", recipientID);
+
+            JSONObject response = makePostRequest("/updateBadge", badge);
             if (!response.isNull("error")) {
                 Log.e("Database", response.getString("error"));
                 throw new IllegalArgumentException(response.getString("error"));
@@ -256,5 +285,4 @@ public class Database {
     public User getUser(String username) throws UserNotFoundException {
         return getUser("username", username);
     }
-
 }
