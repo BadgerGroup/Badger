@@ -51,8 +51,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         TextView usernameText = (TextView) findViewById(R.id.usernameTextView);
 
-        Button badges = (Button) findViewById(R.id.badgesButton);
-        badges.setOnClickListener(this);
+        Button badgesButton = (Button) findViewById(R.id.badgesButton);
+        badgesButton.setOnClickListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
 
@@ -61,7 +61,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         User friend = app.getFriendUser();
 
         //sets give badge button visible if this is friend's page
-        if (FriendSearch.isFriend() == true) {
+        if (FriendSearch.isFriend() == true) { // friends profile
             Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
             giveBadges.setOnClickListener(this);
 
@@ -71,7 +71,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             usernameText.setText(friend.getUserName());
             toolbar.setTitle(friend.getUserName() + "'s Profile");
         }
-        else{
+        else
+        { // user profile
+
+            badgesButton.setText("Your Badges");
+
             Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
             giveBadges.setVisibility(View.GONE);
 
@@ -94,12 +98,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 }
                 catch (BadgeNotFoundException e)
                 {
-                    Log.d("Prefix", "Error getting badges");
+                    Log.d("Prefix", "Error getting badgesButton");
                 }
             }
             else
             {
-                Log.d("Prefix", "No badges found");
+                Log.d("Prefix", "No badgesButton found");
             }
         }
 
@@ -168,6 +172,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 toast.show();
                 //startActivity(new Intent(this, Settings.class)); --> TODO: Create Settings class
                 break;
+
+            case R.id.createBadgeOption:
+                startActivity(new Intent(this, CreateBadge.class));
+                break;
         }
         return true;
     }
@@ -181,6 +189,16 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.badgesButton:
                 startActivity(new Intent(this, BadgeList.class));
+                Database db = new Database();
+                for (String id : BadgerApp.getCurrentUser().getBadgeIds()) {
+                    try {
+                        Badge badge = db.getBadge(id);
+                        Log.d("Database", "\n\tAuthor: " + badge.getAuthorID() + "\n\tName: " + badge.getBadgeName() + "\n\tDescr: " + badge.getDescription() + "\n\tURL: " + badge.getImageURL() + "\n\tRecip: " + badge.getRecipientID());
+                    }
+                    catch (BadgeNotFoundException e) {
+                        Log.e("Database", Log.getStackTraceString(e));
+                    }
+            }
                 break;
 
             case R.id.editOrGiveButton:

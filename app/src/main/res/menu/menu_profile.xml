@@ -24,4 +24,11 @@
         android:orderInCategory="100"
         android:visible="true"/>
 
+    <item
+        android:id="@+id/createBadgeOption"
+        android:title="Create Badge"
+        app:showAsAction="never"
+        android:orderInCategory="100"
+        android:visible="true"/>
+
 </menu>

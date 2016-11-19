@@ -33,6 +33,9 @@
             android:name=".BadgeScreen"
             android:label="@string/title_activity_badge" />
         <activity
+            android:name=".CreateBadge"
+            android:label="@string/title_activity_badge" />
+        <activity
             android:name=".GroupList"
             android:label="@string/title_activity_group_list" />
         <activity

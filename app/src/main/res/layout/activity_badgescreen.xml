@@ -82,7 +82,8 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop= "5dp" >
+        android:layout_marginTop= "5dp"
+        android:id="@+id/badgeScrollView" >
 
 
         <LinearLayout
@@ -180,7 +181,7 @@
         android:ems="10"
         android:layout_marginTop="-210dp"
         android:visibility="invisible"
-        android:id="@+id/editText" />
+        android:id="@+id/badgeNameEditText" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -191,7 +192,7 @@
         android:ems="10"
         android:layout_marginTop="0dp"
         android:visibility="invisible"
-        android:id="@+id/editText1" />
+        android:id="@+id/badgeDescriptionEditText" />
 
 
 

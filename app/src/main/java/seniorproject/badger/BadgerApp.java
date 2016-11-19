@@ -7,9 +7,9 @@ import android.app.Application;
  */
 public class BadgerApp extends Application {
     static private User currentUser;
-    private User friendUser;
+    static private User friendUser;
 
-    public User getFriendUser() {
+    static public User getFriendUser() {
         return friendUser;
     }
 
