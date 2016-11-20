@@ -27,7 +27,7 @@ public class Database {
 
     }
 
-    public JSONObject makeRequest(final String httpMethod, final String endpoint, final String query, final JSONObject request) {
+    private JSONObject makeRequest(final String httpMethod, final String endpoint, final String query, final JSONObject request) {
         AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
             @Override
             protected String doInBackground(String... params) {
@@ -93,11 +93,11 @@ public class Database {
         return json;
     }
 
-    public JSONObject makeGetRequest(final String endpoint, final String query) {
+    private JSONObject makeGetRequest(final String endpoint, final String query) {
         return makeRequest("GET", endpoint, query, null);
     }
 
-    public JSONObject makePostRequest(String endpoint, JSONObject json) {
+    private JSONObject makePostRequest(String endpoint, JSONObject json) {
         return makeRequest("POST", endpoint, null, json);
     }
 
@@ -229,6 +229,35 @@ public class Database {
             Log.e("Database", Log.getStackTraceString(je));
         }
         return result;
+    }
+
+    public Badge awardBadge(Badge badge, User recipient) {
+
+        JSONObject request = new JSONObject();
+        Badge result;
+
+        try {
+            request.put("badge_name", badge.getBadgeName());
+            request.put("image_url", badge.getImageURL());
+            request.put("badge_description", badge.getDescription());
+            request.put("author_id", badge.getAuthorID());
+            request.put("recipient_id", recipient.getId());
+
+            JSONObject response = makePostRequest("/updateBadge", request);
+            if (!response.isNull("error")) {
+                Log.e("Database", response.getString("error"));
+                throw new IllegalArgumentException(response.getString("error"));
+            }
+
+            result = new Badge(response);
+        }
+        catch (JSONException e) {
+            result = null;
+            Log.e("Database", Log.getStackTraceString(e));
+        }
+
+        return result;
+
     }
 
     public Badge updateBadge(String name, String imgURL, String description, String authorID,
