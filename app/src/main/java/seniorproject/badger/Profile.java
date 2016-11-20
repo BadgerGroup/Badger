@@ -21,6 +21,13 @@ import android.graphics.BitmapFactory;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
+    private TextView usernameText;
+    private TextView badgeCount;
+    private Toolbar toolbar;
+    private User user;
+    private User friend;
+    private Button badgesButton;
+
     //ImageView imgClick;
 
     //TODO: Be able to store the logged in user's credentials and the credentials of the user
@@ -50,17 +57,22 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
 
-        TextView badgeCount = (TextView) findViewById(R.id.badgeCount);
-        TextView usernameText = (TextView) findViewById(R.id.usernameTextView);
+        badgeCount = (TextView) findViewById(R.id.badgeCount);
+        usernameText = (TextView) findViewById(R.id.usernameTextView);
 
-        Button badgesButton = (Button) findViewById(R.id.badgesButton);
+        badgesButton = (Button) findViewById(R.id.badgesButton);
         badgesButton.setOnClickListener(this);
 
-        Toolbar toolbar = (Toolbar) findViewById (R.id.toolbar);
+        toolbar = (Toolbar) findViewById (R.id.toolbar);
+
+    }
+
+    public void onResume() {
+        super.onResume();
 
         BadgerApp app = (BadgerApp) getApplication();
-        User user = app.getCurrentUser();
-        User friend = app.getFriendUser();
+        user = app.getCurrentUser();
+        friend = app.getFriendUser();
 
         //sets give badge button visible if this is friend's page
         if (FriendSearch.isFriend() == true) { // friends profile
@@ -91,20 +103,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             toolbar.setTitle(user.getUserName() + "'s Profile");
         }
 
-//        BadgerApp app = (BadgerApp) getApplication();
-//        User user = app.getCurrentUser();
-//        User friend = app.getFriendUser();
-//        if (user != null) {
-//            usernameText.setText(user.getUserName());
-//            toolbar.setTitle(user.getUserName() + "'s Profile");
-//        }
-//        else {
-//            Log.e("Database", "User is null.");
-//        }
-
         toolbar.setTitleTextColor(Color.BLACK);
         toolbar.showOverflowMenu();
         setSupportActionBar(toolbar);
+
     }
 
 

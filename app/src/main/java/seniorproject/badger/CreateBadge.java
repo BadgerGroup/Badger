@@ -1,5 +1,6 @@
 package seniorproject.badger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,15 @@ public class CreateBadge extends BadgeScreen {
                 Database db = new Database();
                 db.createBadge(badgeNameText.getText().toString(), url, badgeDescriptionText.getText().toString(),
                                 currentUser.getId(), null);
+                BadgerApp app = (BadgerApp) getApplication();
+                try {
+                    app.setCurrentUser(db.getUser(Integer.valueOf(currentUser.getId())));
+                } catch (UserNotFoundException e) {
+                    Log.e("Database", Log.getStackTraceString(e));
+                    return;
+                }
+
+                startActivity(new Intent(CreateBadge.this, Profile.class));
             }
         });
 
