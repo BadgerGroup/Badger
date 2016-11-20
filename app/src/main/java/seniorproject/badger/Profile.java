@@ -49,6 +49,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
 
+
+        TextView badgeCount = (TextView) findViewById(R.id.badgeCount);
         TextView usernameText = (TextView) findViewById(R.id.usernameTextView);
 
         Button badgesButton = (Button) findViewById(R.id.badgesButton);
@@ -70,11 +72,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             usernameText.setText(friend.getUserName());
             toolbar.setTitle(friend.getUserName() + "'s Profile");
+
+            badgeCount.setText("" + friend.getBadgeIds().length);
         }
         else
         { // user profile
 
             badgesButton.setText("Your Badges");
+            badgeCount.setText("" + user.getBadgeIds().length);
 
             Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
             giveBadges.setVisibility(View.GONE);
@@ -181,28 +186,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             case R.id.editOrGiveButton:
                 startActivity(new Intent(this, BadgeScreen.class));
                 break;
-
-            //For trophy case
-
-            case R.id.badgeView1:
-                startActivity(new Intent(this, Badge.class));
-                break;
-//
-//            case R.id.badgeView2:
-//                startActivity(new Intent(this, Badge.class));
-//                break;
-//
-//            case R.id.badgeView3:
-//                startActivity(new Intent(this, Badge.class));
-//                break;
-//
-//            case R.id.badgeView4:
-//                startActivity(new Intent(this, Badge.class));
-//                break;
-//
-//            case R.id.badgeView5:
-//                startActivity(new Intent(this, Badge.class));
-//                break;
         }
     }
 }
