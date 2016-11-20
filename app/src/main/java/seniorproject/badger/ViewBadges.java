@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
  */
 
 public class ViewBadges extends BadgeScreen {
-    protected HorizontalScrollView scrollView;
 
     @Override
     public void onCreate(Bundle bundle) {
