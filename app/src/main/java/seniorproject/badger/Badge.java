@@ -8,6 +8,8 @@ import org.json.JSONObject;
 
 public class Badge  {
 
+
+
     private String id;
     private String badgeName;
     private String authorID;
@@ -76,5 +78,13 @@ public class Badge  {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
