@@ -45,6 +45,13 @@
             android:layout_gravity= "center"
             android:id="@+id/imageView" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:color/background_light"
+            android:layout_gravity= "center"
+            android:id="@+id/imageView2" />
+
 
 
 
@@ -87,12 +94,14 @@
 
 
         <LinearLayout
+            android:id="@+id/scrollLayout"
 
             android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
 
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            >
 
             <ImageButton
                 app:srcCompat="@drawable/badge1"

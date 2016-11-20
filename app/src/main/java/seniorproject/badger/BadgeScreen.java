@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
 
 import static seniorproject.badger.R.layout.activity_badgescreen;
 
@@ -17,6 +20,8 @@ public class BadgeScreen extends AppCompatActivity {
     ImageButton button, button1, button2, button3, button4;
     protected int selected;
     protected Button submitButton;
+    protected ArrayList<Badge> badgeList;
+    protected ViewGroup scrollLayout;
     ImageView image;
     EditText badgeNameText, badgeDescriptionText;
 
@@ -24,6 +29,7 @@ public class BadgeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_badgescreen);
+        scrollLayout = (ViewGroup) findViewById(R.id.scrollLayout);
 
         addListenerOnButton();
         selected = 0;

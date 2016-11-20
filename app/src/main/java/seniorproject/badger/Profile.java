@@ -84,30 +84,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             usernameText.setText(user.getUserName());
             toolbar.setTitle(user.getUserName() + "'s Profile");
-
-            String[] badgeIDs = user.getBadgeIds();
-            if(badgeIDs.length > 0)
-            {
-                try {
-                    Database db = new Database();
-
-                    Badge badge1 = db.getBadge(badgeIDs[0]);
-                    ImageView badgeView1 = (ImageView) findViewById(R.id.badgeView1);
-                    badgeView1.setImageBitmap(getImageFromURL(badge1.getImageURL()));
-                    badgeView1.setOnClickListener(this);
-                }
-                catch (BadgeNotFoundException e)
-                {
-                    Log.d("Prefix", "Error getting badgesButton");
-                }
-            }
-            else
-            {
-                Log.d("Prefix", "No badgesButton found");
-            }
         }
-
-
 
 //        BadgerApp app = (BadgerApp) getApplication();
 //        User user = app.getCurrentUser();
@@ -188,7 +165,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.badgesButton:
-                startActivity(new Intent(this, BadgeList.class));
                 Database db = new Database();
                 for (String id : BadgerApp.getCurrentUser().getBadgeIds()) {
                     try {
@@ -198,7 +174,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     catch (BadgeNotFoundException e) {
                         Log.e("Database", Log.getStackTraceString(e));
                     }
-            }
+                }
+                startActivity(new Intent(this, ViewBadges.class));
                 break;
 
             case R.id.editOrGiveButton:

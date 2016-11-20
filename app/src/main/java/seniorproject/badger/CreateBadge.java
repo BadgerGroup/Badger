@@ -25,8 +25,8 @@ public class CreateBadge extends BadgeScreen {
                 EditText badgeNameText = (EditText) findViewById(R.id.badgeNameEditText);
                 EditText badgeDescriptionText = (EditText) findViewById(R.id.badgeDescriptionEditText);
 
-                if (badgeNameText == null) {
-                    Log.e("Database", "Badge name is null.");
+                if (badgeNameText == null || badgeDescriptionText == null) {
+                    Log.e("Database", "Badge name/descr is null.");
                     return;
                 }
 
