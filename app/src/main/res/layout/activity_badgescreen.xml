@@ -3,8 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:weightSum="1"
     android:background="#8af968"
@@ -12,7 +12,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="20dp" />
 
     <TextView
         android:text="Badge Selection Screen"
@@ -30,32 +30,55 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height= "50dp" />
+        android:layout_height= "30dp" />
+
+
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="380dp"
         android:background = "@drawable/border">
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:textSize="20dp"
+            android:inputType="textPersonName"
+            android:text="Badge Name"
+            android:ems="10"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:layout_marginBottom="-100dp"
+            android:id="@+id/badgeNameEditText" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:textSize="20dp"
+            android:inputType="textPersonName"
+            android:text="Description"
+            android:layout_gravity="center"
+            android:layout_marginBottom="-145dp"
+            android:ems="10"
+            android:visibility="invisible"
+            android:id="@+id/badgeDescriptionEditText" />
+
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@android:color/background_light"
-            android:layout_gravity= "center"
+            android:layout_gravity= "top"
             android:id="@+id/imageView" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:color/background_light"
-            android:layout_gravity= "center"
-            android:id="@+id/imageView2" />
+
 
 
 
 
     </FrameLayout>
+
+
 
 
     <Button
@@ -65,11 +88,12 @@
         android:visibility="invisible"
         android:id="@+id/submitButton" />
 
+
+
     <TextView
         android:text="Select Your Badge!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textAllCaps="true"
@@ -77,38 +101,37 @@
         android:id="@+id/textView3" />
 
 
-
     <View
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="3dip"
         android:background="#000000" />
 
 
 
+
     <HorizontalScrollView
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop= "5dp"
-        android:id="@+id/badgeScrollView" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/badgeScrollView">
+
+
 
 
         <LinearLayout
-            android:id="@+id/scrollLayout"
 
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            >
+            android:layout_gravity="bottom"
+            android:id="@+id/scrollLayout">
 
             <ImageButton
                 app:srcCompat="@drawable/badge1"
                 android:id="@+id/imageButton2"
                 android:cropToPadding="false"
+                android:layout_height="wrap_content"
                 android:layout_width="96dp"
-                android:layout_height="58dp"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:scaleType="centerCrop" />
 
@@ -118,7 +141,7 @@
                 android:id="@+id/imageButton3"
                 android:cropToPadding="false"
                 android:layout_width="96dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:scaleType="centerCrop" />
 
@@ -127,7 +150,7 @@
                 android:id="@+id/imageButton4"
                 android:cropToPadding="false"
                 android:layout_width="96dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:scaleType="centerCrop" />
 
@@ -136,7 +159,7 @@
                 android:id="@+id/imageButton5"
                 android:cropToPadding="false"
                 android:layout_width="96dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:scaleType="centerCrop" />
             <ImageButton
@@ -144,7 +167,7 @@
                 android:id="@+id/imageButton6"
                 android:cropToPadding="false"
                 android:layout_width="96dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:scaleType="centerCrop" />
             <ImageButton
@@ -152,7 +175,7 @@
                 android:id="@+id/imageButton7"
                 android:cropToPadding="false"
                 android:layout_width="96dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:scaleType="centerCrop" />
             <ImageButton
@@ -160,7 +183,7 @@
                 android:id="@+id/imageButton8"
                 android:cropToPadding="false"
                 android:layout_width="96dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:scaleType="centerCrop" />
             <ImageButton
@@ -168,11 +191,9 @@
                 android:id="@+id/imageButton9"
                 android:cropToPadding="false"
                 android:layout_width="96dp"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 style="@android:style/Widget.DeviceDefault.Light.ImageButton"
                 android:scaleType="centerCrop" />
-
-
 
 
         </LinearLayout>
@@ -181,27 +202,7 @@
 
     </HorizontalScrollView>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:textSize="20dp"
-        android:inputType="textPersonName"
-        android:hint ="Badge Name"
-        android:ems="10"
-        android:layout_marginTop="-210dp"
-        android:visibility="invisible"
-        android:id="@+id/badgeNameEditText" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:textSize="20dp"
-        android:inputType="textPersonName"
-        android:hint ="Description"
-        android:ems="10"
-        android:layout_marginTop="0dp"
-        android:visibility="invisible"
-        android:id="@+id/badgeDescriptionEditText" />
 
 
 
