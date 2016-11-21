@@ -237,6 +237,7 @@ public class Database {
         Badge result;
 
         try {
+            request.put("id", badge.getId());
             request.put("badge_name", badge.getBadgeName());
             request.put("image_url", badge.getImageURL());
             request.put("badge_description", badge.getDescription());

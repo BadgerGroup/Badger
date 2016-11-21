@@ -75,7 +75,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         friend = app.getFriendUser();
 
         //sets give badge button visible if this is friend's page
-        if (FriendSearch.isFriend() == true) { // friends profile
+        if (FriendSearch.isFriend()) { // friends profile
             Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
             giveBadges.setOnClickListener(this);
 
@@ -85,7 +85,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             usernameText.setText(friend.getUserName());
             toolbar.setTitle(friend.getUserName() + "'s Profile");
 
-            badgeCount.setText("" + friend.getBadgeIds().length);
+            badgeCount.setText("" + friend.getReceivedBadges().length);
         }
         else
         { // user profile
@@ -172,8 +172,15 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.badgesButton:
+                User owner;
+                if (FriendSearch.isFriend()) {
+                    owner = friend;
+                }
+                else {
+                    owner = user;
+                }
                 Database db = new Database();
-                for (String id : BadgerApp.getCurrentUser().getBadgeIds()) {
+                for (String id : owner.getBadgeIds()) {
                     try {
                         Badge badge = db.getBadge(id);
                         Log.d("Database", "\n\tAuthor: " + badge.getAuthorID() + "\n\tName: " + badge.getBadgeName() + "\n\tDescr: " + badge.getDescription() + "\n\tURL: " + badge.getImageURL() + "\n\tRecip: " + badge.getRecipientID());

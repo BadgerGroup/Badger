@@ -33,7 +33,7 @@ public class ViewBadges extends BadgeScreen {
             badgeIds = currentUser.getBadgeIds();
         }else{
             User friendUser = BadgerApp.getFriendUser();
-            badgeIds = friendUser.getBadgeIds();
+            badgeIds = friendUser.getReceivedBadges();
         }
         final Badge[] badges = new Badge[badgeIds.length];
         final Database db = new Database();
