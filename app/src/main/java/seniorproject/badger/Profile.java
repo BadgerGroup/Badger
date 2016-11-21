@@ -91,7 +91,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         { // user profile
 
             badgesButton.setText("Your Badges");
-            badgeCount.setText("" + user.getBadgeIds().length);
+            badgeCount.setText("" + user.getReceivedBadges().length);
 
             Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
             giveBadges.setVisibility(View.GONE);
@@ -193,7 +193,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.editOrGiveButton:
-                startActivity(new Intent(this, BadgeScreen.class));
+                startActivity(new Intent(this, CreateBadge.class));
                 break;
         }
     }
