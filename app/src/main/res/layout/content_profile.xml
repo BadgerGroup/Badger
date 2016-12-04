@@ -51,8 +51,7 @@
 
     <Button
         android:text="GIVE BADGE"
-        android:background="@color/colorAccent"
-        android:textColor="@color/colorPrimary"
+        style="@style/BadgerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editOrGiveButton"

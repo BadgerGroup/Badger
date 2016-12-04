@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    style="@style/BadgerLayout"
     tools:context="seniorproject.badger.FriendsList">
 
     <android.support.design.widget.AppBarLayout
@@ -16,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:theme="@style/BadgerActionBarTheme"
+            style="@style/BadgerActionBarTheme"
             app:popupTheme="@style/PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
