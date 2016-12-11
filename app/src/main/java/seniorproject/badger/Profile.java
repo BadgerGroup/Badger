@@ -146,24 +146,27 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             }
         }
         int recent = badges.length;
-        final String authorID = badges[recent-1].getAuthorID();
-        final String description = badges[recent-1].getDescription();
         final String author;
-        final Badge currentBadge = badges[recent-1];
-        final String badgeName = badges[recent-1].getBadgeName();
-        try {
-            author = db.getUser(Integer.valueOf(authorID)).getUserName();
+        if(recent != 0) {
+            final String authorID = badges[recent - 1].getAuthorID();
+            final String description = badges[recent - 1].getDescription();
+            final Badge currentBadge = badges[recent - 1];
+            final String badgeName = badges[recent - 1].getBadgeName();
 
-            Picasso.with(this).load(currentBadge.getImageURL()).into(viewRecent);
-            recentBadgeAuthor.setText(author);
-            recentDescription.setText(description);
+            try {
+                author = db.getUser(Integer.valueOf(authorID)).getUserName();
+
+                Picasso.with(this).load(currentBadge.getImageURL()).into(viewRecent);
+                recentBadgeAuthor.setText(author);
+                recentDescription.setText(description);
 
 
-        } catch (UserNotFoundException e) {
+            } catch (UserNotFoundException e) {
 
 
-            e.printStackTrace();
+                e.printStackTrace();
 
+            }
         }
     }
 

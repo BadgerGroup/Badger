@@ -15,7 +15,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            style="@style/BadgerActionBarTheme"
+            android:theme="@style/BadgerActionBarTheme"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/PopupOverlay" />
