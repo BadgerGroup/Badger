@@ -29,7 +29,7 @@ import com.squareup.picasso.Picasso;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView usernameText, recentBadgeAuthor, recentDescription;
+    private TextView usernameText, recentBadgeAuthor, recentDescription, from, description;
     private TextView badgeCount;
     private Toolbar toolbar;
     private ImageView viewRecent;
@@ -71,6 +71,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         badgesButton.setOnClickListener(this);
         recentBadgeAuthor =(TextView) findViewById(R.id.textView7);
         recentDescription = (TextView) findViewById(R.id.textView8);
+
+        from = (TextView) findViewById(R.id.textView9);
+        description = (TextView) findViewById(R.id.textView10);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -167,6 +170,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 e.printStackTrace();
 
             }
+        }
+        else{
+
+            recentBadgeAuthor.setText("");
+            recentDescription.setText("");
+            description.setText("");
+            from.setText("You Have No Badges!");
+            viewRecent.setImageResource(R.drawable.nobadges);
         }
     }
 
