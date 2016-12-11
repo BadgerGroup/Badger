@@ -35,7 +35,7 @@ public class CreateBadge extends BadgeScreen {
                         + ".jpg";
                 User currentUser = BadgerApp.getCurrentUser();
                 Database db = new Database();
-                db.createBadge(badgeNameText.getText().toString(), url, badgeDescriptionText.getText().toString(),
+                Badge badge = db.createBadge(badgeNameText.getText().toString(), url, badgeDescriptionText.getText().toString(),
                                 currentUser.getId(), null);
                 BadgerApp app = (BadgerApp) getApplication();
                 try {
@@ -43,6 +43,18 @@ public class CreateBadge extends BadgeScreen {
                 } catch (UserNotFoundException e) {
                     Log.e("Database", Log.getStackTraceString(e));
                     return;
+                }
+
+                if (FriendSearch.isFriend()) {
+                    User friend = BadgerApp.getFriendUser();
+                    db.awardBadge(badge, friend);
+
+                    try {
+                        app.setFriendUser(db.getUser(friend.getUserName()));
+                    } catch (UserNotFoundException e) {
+                        Log.e("Database", Log.getStackTraceString(e));
+                    }
+
                 }
 
                 startActivity(new Intent(CreateBadge.this, Profile.class));

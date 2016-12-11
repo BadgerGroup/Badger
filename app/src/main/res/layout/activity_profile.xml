@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    style="@style/BadgerLayout"
     tools:context="seniorproject.badger.Profile">
 
     <android.support.design.widget.AppBarLayout
@@ -15,7 +16,7 @@
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:theme="@style/BadgerActionBarTheme"
+            style="@style/BadgerActionBarTheme"
             android:minHeight="?attr/actionBarSize"
             android:id="@+id/toolbar"
             android:layout_weight="1"

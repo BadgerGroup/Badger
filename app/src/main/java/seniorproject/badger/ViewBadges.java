@@ -30,10 +30,10 @@ public class ViewBadges extends BadgeScreen {
         String badgeIds[];
         if (!FriendSearch.isFriend()) {
             User currentUser = BadgerApp.getCurrentUser();
-            badgeIds = currentUser.getBadgeIds();
+            badgeIds = currentUser.getReceivedBadges();
         }else{
             User friendUser = BadgerApp.getFriendUser();
-            badgeIds = friendUser.getBadgeIds();
+            badgeIds = friendUser.getReceivedBadges();
         }
         final Badge[] badges = new Badge[badgeIds.length];
         final Database db = new Database();
