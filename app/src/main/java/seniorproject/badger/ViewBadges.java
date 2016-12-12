@@ -54,6 +54,7 @@ public class ViewBadges extends BadgeScreen {
             final String authorID = badges[i].getAuthorID();
             final String description = badges[i].getDescription();
             final String author;
+            final String badgeName = badges[i].getBadgeName();
             final Badge currentBadge = badges[i];
             try {
                 author = db.getUser(Integer.valueOf(authorID)).getUserName();
@@ -66,8 +67,8 @@ public class ViewBadges extends BadgeScreen {
 
                         //creates popup window
                         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(ViewBadges.this);
-                        dlgAlert.setMessage(description);
-                        dlgAlert.setTitle("From: " + author);
+                        dlgAlert.setMessage("From: " + author + "\n" + description);
+                        dlgAlert.setTitle(badgeName);
                         dlgAlert.setPositiveButton("OK", null);
                         dlgAlert.setCancelable(true);
                         dlgAlert.create().show();

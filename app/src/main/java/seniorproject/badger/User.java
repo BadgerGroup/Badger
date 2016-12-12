@@ -61,6 +61,42 @@ public class User {
 
     }
 
+    /**
+     * Get badges that have not been dismissed yet with dismissNewBadges()
+     * @return
+     */
+    public String[] getNewBadgeIds() {
+        String[] result = new String[getReceivedBadges().length];
+        Database db = new Database();
+        int i = 0;
+        for(String badgeId : getReceivedBadges()) {
+            try {
+                Badge badge = db.getBadge(badgeId);
+                if (badge.isNew()) {
+                    result[i] = badgeId;
+                    i++;
+                }
+            } catch (BadgeNotFoundException e) {
+                Log.e("Database", Log.getStackTraceString(e));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Clears the NewBadgeIds array.
+     * @return false only if an error occurred.
+     */
+    public boolean dismissNewBadges() {
+        Database db = new Database();
+        for(String id : getNewBadgeIds()) {
+            if (!db.dismissBadge(id)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public String getEmailAddress() {
         return emailAddress;
     }

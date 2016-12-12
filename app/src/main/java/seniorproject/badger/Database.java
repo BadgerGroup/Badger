@@ -243,6 +243,7 @@ public class Database {
             request.put("badge_description", badge.getDescription());
             request.put("author_id", badge.getAuthorID());
             request.put("recipient_id", recipient.getId());
+            request.put("is_new", "true");
 
             JSONObject response = makePostRequest("/updateBadge", request);
             if (!response.isNull("error")) {
@@ -259,6 +260,28 @@ public class Database {
 
         return result;
 
+    }
+
+    public boolean dismissBadge(String badgeId){
+        JSONObject req = new JSONObject();
+
+        try {
+            req.put("id", badgeId);
+            req.put("is_new", "0");
+
+            JSONObject response = makePostRequest("/updateBadge", req);
+
+            if (!response.isNull("error")) {
+                Log.e("Database", response.getString("error"));
+                throw new IllegalArgumentException(response.getString("error"));
+            }
+
+            return true;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public Badge updateBadge(String name, String imgURL, String description, String authorID,

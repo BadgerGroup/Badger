@@ -107,8 +107,6 @@
         android:background="#000000" />
 
 
-
-
     <HorizontalScrollView
 
         android:layout_width="match_parent"
@@ -201,9 +199,6 @@
 
 
     </HorizontalScrollView>
-
-
-
 
 
 </LinearLayout>

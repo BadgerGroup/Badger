@@ -16,6 +16,7 @@ public class Badge  {
     private String recipientID;
     private String imageURL;
     private String description;
+    private String isNew;
 
     public Badge(JSONObject json){
         try {
@@ -25,6 +26,7 @@ public class Badge  {
             recipientID = json.getString("recipient_id");
             imageURL = json.getString("image_url");
             description = json.getString("badge_description");
+            isNew = json.getString("is_new");
         } catch (JSONException e) {
             Log.e("Database", e.toString());
         } catch (NullPointerException npe) {
@@ -86,5 +88,9 @@ public class Badge  {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isNew() {
+        return isNew.equals("true");
     }
 }
