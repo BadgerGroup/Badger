@@ -67,6 +67,11 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
             for (int j = 0; j <= size - 1; j++) {
                 Database db = new Database();
                 Button btn = new Button(this);
+                btn.setBackgroundColor(0xffff8800);
+                btn.setWidth(500);
+                btn.getLayoutParams();
+                params.setMargins(250, 35, 100, 35);
+                btn.setLayoutParams(params);
                 String fID = cUser.getFriendIds()[j];
                 final int friendID = Integer.parseInt(fID);
                 try {
