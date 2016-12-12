@@ -1,36 +1,29 @@
 package seniorproject.badger;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView;
 import java.io.InputStream;
 import android.graphics.BitmapFactory;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 
 import com.squareup.picasso.Picasso;
 
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView usernameText, recentBadgeAuthor, recentDescription, from, description;
-    private TextView badgeCount;
+    private TextView levelText, recentBadgeAuthor, recentDescription, newBadgeText;
+    private TextView badgeCountEarned, badgeCountGiven;
     private Toolbar toolbar;
     private ImageView viewRecent;
     private User user;
@@ -64,16 +57,17 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 //        imgClick5.setOnClickListener(this);
 
 
-        badgeCount = (TextView) findViewById(R.id.badgeCount);
-        usernameText = (TextView) findViewById(R.id.usernameTextView);
+        badgeCountEarned = (TextView) findViewById(R.id.badgeCountEarned);
+        badgeCountGiven = (TextView) findViewById(R.id.badgeCountGiven);
+        levelText = (TextView) findViewById(R.id.levelTextView);
 
         badgesButton = (Button) findViewById(R.id.badgesButton);
         badgesButton.setOnClickListener(this);
         recentBadgeAuthor =(TextView) findViewById(R.id.textView7);
         recentDescription = (TextView) findViewById(R.id.textView8);
 
-        from = (TextView) findViewById(R.id.textView9);
-        description = (TextView) findViewById(R.id.textView10);
+        newBadgeText = (TextView) findViewById(R.id.textView5);
+        //description = (TextView) findViewById(R.id.textView10);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -98,18 +92,23 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             Button friends = (Button) findViewById(R.id.groupsButton);
             friends.setVisibility(View.GONE);
 
-            usernameText.setText(friend.getUserName());
+            int level = ((friend.getBadgeIds().length) + (friend.getReceivedBadges().length)) / 3;
+            levelText.setText("Level: " + String.valueOf(level));
+
             toolbar.setTitle(friend.getUserName() + "'s Profile");
 
 
-            badgeCount.setText("" + friend.getReceivedBadges().length);
+            badgeCountEarned.setText("" + friend.getReceivedBadges().length);
+            badgeCountGiven.setText("" + friend.getBadgeIds().length);
         }
         else
         { // user profile
 
 
             badgesButton.setText("Your Badges");
-            badgeCount.setText("" + user.getReceivedBadges().length);
+
+            badgeCountEarned.setText("" + user.getReceivedBadges().length);
+            badgeCountGiven.setText("" + user.getBadgeIds().length);
 
             Button giveBadges = (Button) findViewById(R.id.editOrGiveButton);
             giveBadges.setVisibility(View.GONE);
@@ -117,7 +116,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             Button friends = (Button) findViewById(R.id.groupsButton);
             friends.setOnClickListener(this);
 
-            usernameText.setText(user.getUserName());
+            int level = ((user.getBadgeIds().length) + (user.getReceivedBadges().length)) / 3;
+            levelText.setText("Level: " + String.valueOf(level));
+
             toolbar.setTitle(user.getUserName() + "'s Profile");
 
         }
@@ -132,10 +133,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         String badgeIds[];
         if (!FriendSearch.isFriend()) {
             User currentUser = BadgerApp.getCurrentUser();
-            badgeIds = currentUser.getBadgeIds();
+            badgeIds = currentUser.getReceivedBadges();
         } else {
             User friendUser = BadgerApp.getFriendUser();
-            badgeIds = friendUser.getBadgeIds();
+            badgeIds = friendUser.getReceivedBadges();
         }
         final Badge[] badges = new Badge[badgeIds.length];
         final Database db = new Database();
@@ -160,8 +161,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 author = db.getUser(Integer.valueOf(authorID)).getUserName();
 
                 Picasso.with(this).load(currentBadge.getImageURL()).into(viewRecent);
-                recentBadgeAuthor.setText(author);
+                recentBadgeAuthor.setText("From: " + author);
                 recentDescription.setText(description);
+                newBadgeText.setText("Check Out Your Newest Badge!");
 
 
             } catch (UserNotFoundException e) {
@@ -174,9 +176,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         else{
 
             recentBadgeAuthor.setText("");
-            recentDescription.setText("");
-            description.setText("");
-            from.setText("You Have No Badges!");
+            recentDescription.setText("No Badges!  Go Earn One!");
+            newBadgeText.setText("");
+            //from.setText("You Have No Badges!");
             viewRecent.setImageResource(R.drawable.nobadges);
         }
     }
