@@ -7,6 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private String userName;
@@ -65,15 +68,15 @@ public class User {
      * Get badges that have not been dismissed yet with dismissNewBadges()
      * @return
      */
-    public String[] getNewBadgeIds() {
-        String[] result = new String[getReceivedBadges().length];
+    public List<String> getNewBadgeIds() {
+        ArrayList<String> result = new ArrayList<>();
         Database db = new Database();
         int i = 0;
         for(String badgeId : getReceivedBadges()) {
             try {
                 Badge badge = db.getBadge(badgeId);
                 if (badge.isNew()) {
-                    result[i] = badgeId;
+                    result.add(badgeId);
                     i++;
                 }
             } catch (BadgeNotFoundException e) {
