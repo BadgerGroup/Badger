@@ -1,9 +1,11 @@
 package seniorproject.badger;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.BitmapFactory;
 
 import com.squareup.picasso.Picasso;
@@ -40,21 +45,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // for trophy case
-//        ImageView imgClick1 = (ImageView)findViewById(R.id.badgeView1);
-//        imgClick1.setOnClickListener(this);
-//
-//        ImageView imgClick2 = (ImageView)findViewById(R.id.badgeView2);
-//        imgClick2.setOnClickListener(this);
-//
-//        ImageView imgClick3 = (ImageView)findViewById(R.id.badgeView3);
-//        imgClick3.setOnClickListener(this);
-//
-//        ImageView imgClick4 = (ImageView)findViewById(R.id.badgeView4);
-//        imgClick4.setOnClickListener(this);
-//
-//        ImageView imgClick5 = (ImageView)findViewById(R.id.badgeView5);
-//        imgClick5.setOnClickListener(this);
 
 
         badgeCountEarned = (TextView) findViewById(R.id.badgeCountEarned);
@@ -103,6 +93,24 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         }
         else
         { // user profile
+            List<String> arr = user.getNewBadgeIds();
+
+            if(arr.size() > 0){
+                AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+                dlgAlert.setTitle("You have earned a new Badge!");
+                dlgAlert.setMessage("Go see it in Your Badges");
+                dlgAlert.setPositiveButton("OK", null);
+                dlgAlert.setCancelable(true);
+                dlgAlert.create().show();
+
+                dlgAlert.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //dismiss the dialog
+                            }
+                        });
+                user.dismissNewBadges();
+            }
 
 
             badgesButton.setText("Your Badges");

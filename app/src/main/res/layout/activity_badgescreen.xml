@@ -3,11 +3,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:weightSum="1"
-    android:background="#8af968"
+    android:background="@drawable/badgerbg"
     android:orientation="vertical">
 
     <Space
@@ -22,7 +23,7 @@
         android:textSize="20dp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:textColor="#228B22"
+        android:textColor="@android:color/holo_orange_dark"
 
         android:id="@+id/textView" />
 
@@ -37,31 +38,31 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="380dp"
-        android:background = "@drawable/border">
+        android:background = "@drawable/badgerbg">
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="43dp"
             android:textSize="20dp"
             android:inputType="textPersonName"
-            android:text="Badge Name"
             android:ems="10"
             android:visibility="invisible"
             android:layout_gravity="center"
             android:layout_marginBottom="-100dp"
-            android:id="@+id/badgeNameEditText" />
+            android:id="@+id/badgeNameEditText"
+            android:hint="Badge Name" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="43dp"
             android:textSize="20dp"
             android:inputType="textPersonName"
-            android:text="Description"
             android:layout_gravity="center"
             android:layout_marginBottom="-145dp"
             android:ems="10"
             android:visibility="invisible"
-            android:id="@+id/badgeDescriptionEditText" />
+            android:id="@+id/badgeDescriptionEditText"
+            android:hint="Description" />
 
 
         <ImageView
@@ -97,7 +98,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:textAllCaps="true"
-        android:textColor="#228B22"
+        android:textColor="@android:color/holo_orange_dark"
         android:id="@+id/textView3" />
 
 
