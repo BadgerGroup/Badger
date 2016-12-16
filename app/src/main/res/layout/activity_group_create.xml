@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="@android:color/holo_orange_light"
+            android:theme="@style/BadgerActionBarTheme"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="Create New Group" />
 

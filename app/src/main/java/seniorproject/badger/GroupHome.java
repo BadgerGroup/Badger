@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +29,8 @@ public class GroupHome extends AppCompatActivity {
         setContentView(R.layout.activity_group_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.showOverflowMenu();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         groupName = (TextView) findViewById((R.id.groupHomeNameText));
         description = (TextView) findViewById((R.id.groupHomeDescText));
@@ -112,6 +117,24 @@ public class GroupHome extends AppCompatActivity {
         }
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_group_list, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId()) {
+            case R.id.myProfileOption:
+                startActivity(new Intent(this, Profile.class));
+                break;
+
+            case android.R.id.home:
+                NavUtils.navigateUpTo(this, getIntent());
+                return true;
+        }
+        return true;
+    }
 
 
 }
