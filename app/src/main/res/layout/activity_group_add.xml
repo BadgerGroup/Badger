@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     style="@style/BadgerLayout"
-    tools:context="seniorproject.badger.GroupHome">
+    tools:context="seniorproject.badger.GroupAdd">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -14,17 +14,16 @@
         android:theme="@style/AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:theme="@style/BadgerActionBarTheme"
-            android:minHeight="?attr/actionBarSize"
-            android:id="@+id/toolbar"
-            android:layout_weight="1"
             app:popupTheme="@style/PopupOverlay"
-            android:background="@android:color/holo_orange_light" />
+            android:background="@android:color/holo_orange_light"
+            app:title="Add Friend to Group" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_group_home" />
+    <include layout="@layout/content_group_add" />
 
 </android.support.design.widget.CoordinatorLayout>

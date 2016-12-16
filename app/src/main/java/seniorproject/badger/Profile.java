@@ -230,9 +230,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this, FriendsList.class));
                 break;
 
-//            case R.id.groupsOption:
-//                startActivity(new Intent(this, GroupList.class));
-//                break;
+            case R.id.groupsOption:
+                startActivity(new Intent(this, GroupList.class));
+                break;
 
             case R.id.myProfileOption:
                 FriendSearch.setIsFriend(false);

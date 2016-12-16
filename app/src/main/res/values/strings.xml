@@ -16,4 +16,5 @@
     <string name="title_activity_login_credentials">SignIn</string>
 
     <string name="new_user"><u>I\'m New Here</u></string>
+    <string name="title_activity_group_create">GroupCreate</string>
 </resources>

@@ -36,6 +36,7 @@ public class User {
             this.friendIds = toArray( json.getJSONArray("friend_ids") );
             this.badgeIds = toArray( json.getJSONArray("badge_ids") );
             this.receivedBadges = toArray( json.getJSONArray("trophy_case") );
+            this.groupIds = toArray(json.getJSONArray("group_ids"));
         } catch (JSONException e) {
             Log.e("Database", e.toString());
         } catch (NullPointerException npe) {

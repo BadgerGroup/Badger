@@ -1,13 +1,19 @@
 package seniorproject.badger;
 
 
+import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Group {
 
     private String groupID;
     private String groupName;
-    private String []members;
+    private String[] members;
+    private String adminID;
     private int numberOfMembers;
     private String description;
 
@@ -15,6 +21,23 @@ public class Group {
         members = new String[20];
         numberOfMembers = 0;
 
+    }
+
+    public Group(JSONObject json)
+    {
+        try {
+            groupID = json.getString("id");
+            groupName = json.getString("group_name");
+            adminID = json.getString("admin_id");
+            description = json.getString("group_description");
+            members = toArray( json.getJSONArray("user_ids") );
+            numberOfMembers = members.length;
+
+        } catch (JSONException e) {
+            Log.e("Database", e.toString());
+        } catch (NullPointerException npe) {
+            Log.e("Database", npe.toString());
+        }
     }
 
     public Group(String gID, String gName){
@@ -56,6 +79,23 @@ public class Group {
         members = temp;
     }
 
+    private String[] toArray(JSONArray json) {
+        String[] result = null;
+        try {
+            if (json == null) {
+                throw new IllegalArgumentException("toArray() received null JSONArray.");
+            }
+            result = new String[json.length()];
+            for (int i = 0; i < json.length(); i++) {
+                result[i] = json.getString(i);
+            }
+        }
+        catch (JSONException je) {
+            Log.e("Database", Log.getStackTraceString(je));
+        }
+        return result;
+    }
+
     /** @return a copy of the array */
     public String[] getArray() {
         return Arrays.copyOf(members, members.length);
@@ -92,4 +132,8 @@ public class Group {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getAdminID() { return adminID;}
+
+    public String[] getMembers() { return members; }
 }

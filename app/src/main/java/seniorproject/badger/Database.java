@@ -189,9 +189,28 @@ public class Database {
         }
     }
 
-    public void createGroup(String groupname, String description, String admin_id)
+    public Group createGroup(String groupname, String description, String admin_id)
     {
+        JSONObject group = new JSONObject();
+        Group result;
+        try {
+            group.put("group_name", groupname);
+            group.put("group_description", description);
+            group.put("admin_id", admin_id);
 
+            JSONObject response = makePostRequest("/createGroup", group);
+            if (!response.isNull("error")) {
+                Log.e("Database", response.getString("error"));
+                throw new IllegalArgumentException(response.getString("error"));
+            }
+
+            result = new Group(response);
+        }
+        catch (JSONException je) {
+            result = null;
+            Log.e("Database", Log.getStackTraceString(je));
+        }
+        return result;
     }
 
     public Badge getBadge(String badgeID) throws BadgeNotFoundException
@@ -313,12 +332,23 @@ public class Database {
 
     public Group getGroup(String groupID)
     {
-        return null;
+        JSONObject response = makeGetRequest("/readGroup",  "id=" + groupID);
+        return new Group(response);
     }
 
     public void addUserToGroup(String userID, String groupID)
     {
-
+        JSONObject group = new JSONObject();
+        try
+        {
+            group.put("user_id", userID);
+            group.put("group_id", groupID);
+            JSONObject response = makePostRequest("/addUserToGroup", group);
+        }
+        catch(JSONException je)
+        {
+            Log.e("Database", Log.getStackTraceString(je));
+        }
     }
 
     public User getUser(String key, String value) throws UserNotFoundException{

@@ -46,8 +46,6 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
         Button seacrhButton = (Button) findViewById(R.id.searchButton);
         seacrhButton.setOnClickListener(this);
 
-
-
     }
 
 

@@ -58,48 +58,48 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
 
         User cUser = BadgerApp.getCurrentUser();
         int size = cUser.getFriendIds().length;
-            LinearLayout layout = (LinearLayout) findViewById(R.id.content_friends_list);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.content_friends_list);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
 
-            layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setOrientation(LinearLayout.VERTICAL);
 
-            for (int j = 0; j <= size - 1; j++) {
-                Database db = new Database();
-                Button btn = new Button(this);
-                btn.setBackgroundColor(0xffff8800);
-                btn.setWidth(500);
-                btn.getLayoutParams();
-                params.setMargins(250, 35, 100, 35);
-                btn.setLayoutParams(params);
-                String fID = cUser.getFriendIds()[j];
-                final int friendID = Integer.parseInt(fID);
-                try {
-                    String name = db.getUser(friendID).getUserName();
-                    btn.setText(name);
+        for (int j = 0; j <= size - 1; j++) {
+            Database db = new Database();
+            Button btn = new Button(this);
+            btn.setBackgroundColor(0xffff8800);
+            btn.setWidth(1200);
+            btn.getLayoutParams();
+            params.setMargins(100, 35, 100, 35);
+            btn.setLayoutParams(params);
+            String fID = cUser.getFriendIds()[j];
+            final int friendID = Integer.parseInt(fID);
+            try {
+                String name = db.getUser(friendID).getUserName();
+                btn.setText(name);
 
-                    final User fUser = db.getUser(friendID);
+                final User fUser = db.getUser(friendID);
 
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //goes to this friend's profile page
-                            FriendSearch.setIsFriend(true);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //goes to this friend's profile page
+                        FriendSearch.setIsFriend(true);
 
-                            ((BadgerApp) getApplication()).setFriendUser(fUser);
-                            String fName = fUser.getUserName();
-                            //FriendSearch.setFriendName(fName);
-                            startActivity(new Intent(FriendsList.this, Profile.class));
-                        }
-                    });
-                    layout.addView(btn);
-                }
-                catch (UserNotFoundException unfe){
-                    Log.e("Database", Log.getStackTraceString(unfe));
-                }
-
-
+                        ((BadgerApp) getApplication()).setFriendUser(fUser);
+                        String fName = fUser.getUserName();
+                        //FriendSearch.setFriendName(fName);
+                        startActivity(new Intent(FriendsList.this, Profile.class));
+                    }
+                });
+                layout.addView(btn);
             }
+            catch (UserNotFoundException unfe){
+                Log.e("Database", Log.getStackTraceString(unfe));
+            }
+
+
+        }
     }
 
 

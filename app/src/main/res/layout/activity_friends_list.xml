@@ -19,7 +19,8 @@
             android:layout_height="56dp"
             android:theme="@style/BadgerActionBarTheme"
             app:popupTheme="@style/PopupOverlay"
-            android:background="@android:color/holo_orange_light" />
+            android:background="@android:color/holo_orange_light"
+            app:title="Friends List" />
 
     </android.support.design.widget.AppBarLayout>
 
