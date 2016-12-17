@@ -13,23 +13,6 @@
     tools:showIn="@layout/activity_profile"
     android:layout_width="match_parent">
 
-    <Button
-        android:text="Friends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/groupsButton"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_below="@+id/badgesButton"
-        android:layout_alignLeft="@+id/badgesButton"
-        android:layout_alignStart="@+id/badgesButton"
-        android:layout_marginTop="11dp"
-        android:layout_alignRight="@+id/badgesButton"
-        android:layout_alignEnd="@+id/badgesButton"
-        style="@android:style/Widget.Holo.Button.Inset"
-        android:background="@android:color/holo_orange_dark"
-        android:textColor="@android:color/background_light" />
-
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -52,18 +35,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Badges Earned: "
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_alignBaseline="@+id/badgesButton"
-        android:layout_alignBottom="@+id/badgesButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="@android:color/black" />
 
     <TextView
         android:text="0"
@@ -91,16 +62,60 @@
         android:layout_toEndOf="@+id/textView4"
         android:textColor="@android:color/black" />
 
-    <TextView
-        android:text="Badges Given:"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView6"
-        android:layout_below="@+id/textView4"
+    <ImageView
+        android:layout_width="match_parent"
+        app:srcCompat="@android:color/background_light"
+        android:id="@+id/imageView4"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/editOrGiveButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="@android:color/black" />
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/textView7" />
+
+    <Button
+        android:text="Badges"
+        android:layout_height="wrap_content"
+        android:id="@+id/badgesButton"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:layout_width="100dp"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/background_light"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/groupsButton"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp"
+        android:layout_marginTop="7dp"
+        style="@android:style/Widget.Holo.Button.Inset"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@+id/badgesButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/badgesButton"
+        android:layout_alignStart="@+id/badgesButton" />
+
+    <Button
+        android:text="GIVE BADGE"
+        style="@style/BadgerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editOrGiveButton"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/groupsButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/groupsButton"
+        android:layout_alignStart="@+id/groupsButton" />
 
     <TextView
         android:text="Level Here"
@@ -113,19 +128,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Badges"
-        android:layout_height="wrap_content"
-        android:id="@+id/badgesButton"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_width="100dp"
-        android:background="@android:color/holo_orange_dark"
-        android:textColor="@android:color/background_light"
-        android:layout_below="@+id/levelTextView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -133,35 +135,33 @@
         android:id="@+id/textView5"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="14sp"
-        android:layout_above="@+id/imageView4"
+        android:layout_below="@+id/badgeCountGiven"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/editOrGiveButton"
         android:layout_toStartOf="@+id/editOrGiveButton" />
 
-    <Button
-        android:text="GIVE BADGE"
-        style="@style/BadgerButton"
+    <TextView
+        android:text="Badges Earned: "
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editOrGiveButton"
-        android:layout_marginTop="9dp"
-        android:layout_below="@+id/groupsButton"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/groupsButton"
-        android:layout_alignStart="@+id/groupsButton" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        app:srcCompat="@android:color/background_light"
-        android:id="@+id/imageView4"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:layout_below="@+id/editOrGiveButton"
+        android:id="@+id/textView4"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/levelTextView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Badges Given:"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
