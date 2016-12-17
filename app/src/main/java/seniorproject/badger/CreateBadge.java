@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by Kevin on 11/19/2016.
@@ -47,8 +48,13 @@ public class CreateBadge extends BadgeScreen {
 
                 if (FriendSearch.isFriend()) {
                     User friend = BadgerApp.getFriendUser();
-                    db.awardBadge(badge, friend);
-
+                    try {
+                        db.awardBadge(badge, friend);
+                    }
+                    catch (IllegalArgumentException e) {
+                        Toast.makeText(getApplicationContext(), "Invalid name or description.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     try {
                         app.setFriendUser(db.getUser(friend.getUserName()));
                     } catch (UserNotFoundException e) {
