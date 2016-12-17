@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 /**
  * Created by Kevin on 11/19/2016.
+ *
+ * Activity for creating new badges.
  */
 
 public class CreateBadge extends BadgeScreen {
