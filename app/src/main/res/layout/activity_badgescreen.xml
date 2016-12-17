@@ -73,10 +73,6 @@
             android:id="@+id/imageView" />
 
 
-
-
-
-
     </FrameLayout>
 
 

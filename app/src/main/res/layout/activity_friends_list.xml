@@ -10,13 +10,13 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:theme="@style/AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="match_parent"
             android:theme="@style/BadgerActionBarTheme"
             app:popupTheme="@style/PopupOverlay"
             android:background="@android:color/holo_orange_light"
@@ -25,5 +25,17 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_friends_list" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/content_friends_list"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>
