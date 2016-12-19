@@ -27,6 +27,14 @@ public class Database {
 
     }
 
+    /**
+     * a method to create a JSON object
+     * @param httpMethod
+     * @param endpoint
+     * @param query
+     * @param request
+     * @return
+     */
     private JSONObject makeRequest(final String httpMethod, final String endpoint, final String query, final JSONObject request) {
         AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
             @Override
@@ -101,6 +109,12 @@ public class Database {
         return makeRequest("POST", endpoint, null, json);
     }
 
+    /**
+     * allows user to login to app using username and password
+     * @param username
+     * @param password
+     * @return User that logged in
+     */
     public User login(String username, String password) throws IllegalArgumentException {
         JSONObject userLogin = new JSONObject();
         User result;
@@ -121,6 +135,13 @@ public class Database {
         return result;
     }
 
+    /**
+     * allows new user to create ccount in the app
+     * @param username
+     * @param password
+     * @param email
+     * @return the newly created user
+     */
     public User createUser(String username, String password, String email) {
         JSONObject user = new JSONObject();
         User result;
@@ -189,6 +210,13 @@ public class Database {
         }
     }
 
+    /**
+     * allows user to create a new group
+     * @param groupname
+     * @param description
+     * @param admin_id
+     * @return the newly created group
+     */
     public Group createGroup(String groupname, String description, String admin_id)
     {
         JSONObject group = new JSONObject();
@@ -213,6 +241,12 @@ public class Database {
         return result;
     }
 
+    /**
+     * retrieves the requested badge object
+     * @param badgeID
+     * @return the requested badge
+     * @throws BadgeNotFoundException
+     */
     public Badge getBadge(String badgeID) throws BadgeNotFoundException
     {
         JSONObject response = makeGetRequest("/readBadge",  "id=" + badgeID);
@@ -223,6 +257,15 @@ public class Database {
         return new Badge(response);
     }
 
+    /**
+     * allows user to create a new badge
+     * @param name
+     * @param imgURL
+     * @param description
+     * @param authorID
+     * @param recipientID
+     * @return the newly created badge
+     */
     public Badge createBadge(String name, String imgURL, String description, String authorID,
                              String recipientID)
     {
@@ -250,6 +293,12 @@ public class Database {
         return result;
     }
 
+    /**
+     * allows user to give a created badge to a friend
+     * @param badge
+     * @param recipient
+     * @return the awarded badge
+     */
     public Badge awardBadge(Badge badge, User recipient) {
 
         JSONObject request = new JSONObject();
@@ -281,6 +330,11 @@ public class Database {
 
     }
 
+    /**
+     * removes badge from new badge list
+     * @param badgeId
+     * @return true if succesfull
+     */
     public boolean dismissBadge(String badgeId){
         JSONObject req = new JSONObject();
 
@@ -330,12 +384,22 @@ public class Database {
         return result;
     }
 
+    /**
+     * retrieves requested group
+     * @param groupID
+     * @return the requested group
+     */
     public Group getGroup(String groupID)
     {
         JSONObject response = makeGetRequest("/readGroup",  "id=" + groupID);
         return new Group(response);
     }
 
+    /**
+     * allows user to add a friend to a group
+     * @param userID
+     * @param groupID
+     */
     public void addUserToGroup(String userID, String groupID)
     {
         JSONObject group = new JSONObject();
@@ -351,6 +415,13 @@ public class Database {
         }
     }
 
+    /**
+     * retrieves requested User object
+     * @param key
+     * @param value
+     * @return the requested User
+     * @throws UserNotFoundException
+     */
     public User getUser(String key, String value) throws UserNotFoundException{
         JSONObject response = makeGetRequest("/readUser", key + "=" + value);
         if (!response.isNull("error")) {
@@ -360,11 +431,23 @@ public class Database {
         return new User(response);
     }
 
+    /**
+     * retrieves a user object
+     * @param userID
+     * @return the requested User
+     * @throws UserNotFoundException
+     */
     public User getUser(int userID) throws UserNotFoundException
     {
         return getUser("id", String.valueOf(userID));
     }
 
+    /**
+     * retrieves a user object
+     * @param username
+     * @return the requested User
+     * @throws UserNotFoundException
+     */
     public User getUser(String username) throws UserNotFoundException {
         return getUser("username", username);
     }

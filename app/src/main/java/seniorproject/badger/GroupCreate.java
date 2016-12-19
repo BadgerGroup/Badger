@@ -67,6 +67,7 @@ public class GroupCreate extends AppCompatActivity implements View.OnClickListen
                 User cUser = BadgerApp.getCurrentUser();
                 Database db = new Database();
                 try {
+                    //creates new group
                     Group group = db.createGroup(name, desc, cUser.getId());
                     db.addUserToGroup(cUser.getId(), group.getGroupID());
                     ((BadgerApp) getApplication()).setCurrentUser(db.getUser(Integer.parseInt(cUser.getId())));

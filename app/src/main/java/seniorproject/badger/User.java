@@ -44,6 +44,11 @@ public class User {
         }
     }
 
+    /**
+     * changes JSON array to array
+     * @param json
+     * @return String array
+     */
     private String[] toArray(JSONArray json) {
         String[] result = null;
         try {
@@ -67,7 +72,7 @@ public class User {
 
     /**
      * Get badges that have not been dismissed yet with dismissNewBadges()
-     * @return
+     * @return String List
      */
     public List<String> getNewBadgeIds() {
         ArrayList<String> result = new ArrayList<>();
@@ -101,63 +106,122 @@ public class User {
         return true;
     }
 
+    /**
+     * returns user's emmail address
+     * @return String
+     */
     public String getEmailAddress() {
         return emailAddress;
     }
 
+    /**
+     * returns username
+     * @return userName
+     */
     public String getUserName() {
         return userName;
     }
 
+    /**
+     * sets the user's email address
+     * @param email
+     */
     public void setEmailAddress(String email) {
         this.emailAddress = email;
     }
 
-
+    /**
+     * sets the user's name
+     * @param name
+     */
     public void setUserName(String name) {
         this.userName = name;
     }
 
+    /**
+     * returns the user's group ids
+     * @return
+     */
     public String[] getGroupIds() {
         return groupIds;
     }
 
+    /**
+     * sets the group ids
+     * @param groupIds
+     */
     public void setGroupIds(String[] groupIds) {
         this.groupIds = groupIds;
     }
 
+    /**
+     * returns the user's groups
+     * @return String array
+     */
     public String[] getOwnedGroups() {
         return ownedGroups;
     }
 
+    /**
+     * sets all of the user's owned groups
+     * @param ownedGroups
+     */
     public void setOwnedGroups(String[] ownedGroups) {
         this.ownedGroups = ownedGroups;
     }
 
+    /**
+     * returns a user's badge ids
+     * @return String array
+     */
     public String[] getBadgeIds() {
         return badgeIds;
     }
 
+    /**
+     * sets the badge ids
+     * @param badgeIds
+     */
     public void setBadgeIds(String[] badgeIds) {
         this.badgeIds = badgeIds;
     }
 
+    /**
+     * returns the user's received badges
+     * @return String array
+     */
     public String[] getReceivedBadges() {
         return receivedBadges;
     }
 
+    /**
+     * sets a user's received badges
+     * @param receivedBadges
+     */
     public void setReceivedBadges(String[] receivedBadges) {
         this.receivedBadges = receivedBadges;
     }
 
+    /**
+     * returns all of the user's friend ids
+     * @return String array
+     */
     public String[] getFriendIds() {
         return friendIds;
     }
 
+    /**
+     * returns a user's id
+     * @return String
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * sets a user's id
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }

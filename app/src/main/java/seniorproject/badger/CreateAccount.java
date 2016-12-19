@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 public class CreateAccount extends AppCompatActivity implements View.OnClickListener {
 
-    //public static User newUser = new User();
     EditText uText;
     EditText pwText;
     EditText mailText;

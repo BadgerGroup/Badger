@@ -22,6 +22,7 @@ public class CreateBadge extends BadgeScreen {
         super.onCreate(bundle);
     }
 
+
     public void addListenerOnButton() {
         super.addListenerOnButton();
         submitButton.setOnClickListener(new View.OnClickListener() {

@@ -31,7 +31,7 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
     private static boolean isFriend;
     EditText name;
     private static String friendName;
-    //public static ArrayList<User> allFriends = new ArrayList<User>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +54,10 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
 
             case R.id.searchButton:
-                //will need to change once we cna get friends info from database
+
                 String fName = name.getText().toString();
                 Database db = new Database();
-                try {
+                try {//searches for friend
                     User user = BadgerApp.getCurrentUser();
 
                     User friend = db.getUser(fName);
@@ -76,6 +76,7 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
 
                 }
                 catch (UserNotFoundException unfe) {
+                    //if user not found
                     //creates popup window
                     AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
                     dlgAlert.setMessage(unfe.getMessage());
@@ -96,22 +97,34 @@ public class FriendSearch extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    /**
+     * checks if user is a friend
+     * @return true if user is a friend, false otherwise
+     */
     public static boolean isFriend() {
         return isFriend;
     }
 
+    /**
+     * sets user as a friend
+     * @param friend
+     */
     public static void setIsFriend(boolean friend) {
         isFriend = friend;
     }
 
+    /**
+     * sets the name of the friend
+     * @param fName
+     */
     public static void setFriendName(String fName) {
         friendName = fName;
     }
 
-    //public static ArrayList<User> getAllFriends() {
-    //    return FriendsList.allFriends;
-    //}
-
+    /**
+     * gets thr name of a friend
+     * @return friendName
+     */
     public static String getFriendName(){
         return friendName;
     }

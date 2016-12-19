@@ -33,28 +33,10 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         createButtons();
-          //tabs for all and close friends- most likely to be deleted
-//        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
-//        tabHost.setup();
-//
-//        TabSpec closeTab = tabHost.newTabSpec("Close");
-//        TabSpec allTab = tabHost.newTabSpec("All");
-//
-//        closeTab.setIndicator("Close").setContent(R.id.Close);
-//
-//        allTab.setIndicator("All").setContent(R.id.All);
-//
-//        tabHost.addTab(closeTab);
-//        tabHost.addTab(allTab);
-//
-//        tabHost.setCurrentTab(0);
     }
 
     private void createButtons() {
-        //allFriends = (ArrayList<String>) Arrays.asList(User.getFriendIds());
-
 
         User cUser = BadgerApp.getCurrentUser();
         int size = cUser.getFriendIds().length;
@@ -63,7 +45,7 @@ public class FriendsList extends AppCompatActivity implements View.OnClickListen
                 Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
 
         layout.setOrientation(LinearLayout.VERTICAL);
-
+        //creates buttons based on number of friends
         for (int j = 0; j <= size - 1; j++) {
             Database db = new Database();
             Button btn = new Button(this);

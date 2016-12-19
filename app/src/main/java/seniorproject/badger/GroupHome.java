@@ -42,6 +42,9 @@ public class GroupHome extends AppCompatActivity {
         createButtons();
     }
 
+    /**
+     * creates buttons to populate the screen
+     */
     private void createButtons() {
         Database db = new Database();
         Group group = db.getGroup(groupID);
@@ -64,7 +67,7 @@ public class GroupHome extends AppCompatActivity {
             if(j == size)
             {
                 if(BadgerApp.getCurrentUser().getId().equals(adminID))
-                {
+                {//adds a friend to a group
                     btn.setText("Add Friend to Group");
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override

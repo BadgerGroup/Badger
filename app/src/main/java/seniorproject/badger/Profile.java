@@ -35,11 +35,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private User friend;
     private Button badgesButton;
 
-    //ImageView imgClick;
-
-    //TODO: Be able to store the logged in user's credentials and the credentials of the user
-    //TODO:   we are viewing. This second value will determine if the "Give Badges" button
-    //TODO:   will be visible. This value will also change the name of the title bar, username, and trophy case.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +52,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         recentDescription = (TextView) findViewById(R.id.textView8);
 
         newBadgeText = (TextView) findViewById(R.id.textView5);
-        //description = (TextView) findViewById(R.id.textView10);
-
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -137,6 +130,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    /**
+     * displays most recent earned badge
+     */
     public void showRecent() {
         String badgeIds[];
         if (!FriendSearch.isFriend()) {
@@ -190,11 +186,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             viewRecent.setImageResource(R.drawable.nobadges);
         }
     }
-
-
-
-
-
 
 
 

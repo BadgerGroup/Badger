@@ -35,8 +35,6 @@ public class GroupAdd extends AppCompatActivity {
     }
 
     private void createButtons() {
-        //allFriends = (ArrayList<String>) Arrays.asList(User.getFriendIds());
-
 
         User cUser = BadgerApp.getCurrentUser();
         int size = cUser.getFriendIds().length;

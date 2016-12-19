@@ -66,6 +66,7 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.signInButton:
+                //logs in user
                 String username = userText.getText().toString();
                 String password = passwordText.getText().toString();
 
@@ -80,7 +81,6 @@ public class LoginCredentials extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
                     return;
                 }
-                //Right now, immediately go to profile
 
         }
     }

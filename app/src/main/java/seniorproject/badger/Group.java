@@ -47,6 +47,10 @@ public class Group {
         numberOfMembers = 0;
     }
 
+    /**
+     * addes member to group
+     * @param userID
+     */
     public void addMember(String userID){
         if(numberOfMembers == members.length){
             resize();
@@ -55,6 +59,11 @@ public class Group {
         numberOfMembers++;
     }
 
+
+    /**
+     * removes member from a group
+     * @param index
+     */
     public void removeMember(int index){
         for (int pos = index + 1; pos < numberOfMembers; pos++)
         {
@@ -79,6 +88,11 @@ public class Group {
         members = temp;
     }
 
+    /**
+     * changes JSON array to array
+     * @param json
+     * @return String array
+     */
     private String[] toArray(JSONArray json) {
         String[] result = null;
         try {
@@ -101,39 +115,80 @@ public class Group {
         return Arrays.copyOf(members, members.length);
     }
 
+    /**
+     * returns the id of the group
+     * @return String
+     */
     public String getGroupID() {
         return groupID;
     }
 
+    /**
+     * returns the name of the group
+     * @return
+     */
     public String getGroupName() {
         return groupName;
     }
 
+    /**
+     * returns number of members in a group
+     * @return int
+     */
     public int getNumberOfMembers() {
         return numberOfMembers;
     }
 
+    /**
+     * sets the id of the grouo
+     * @param groupID
+     */
     public void setGroupID(String groupID) {
         this.groupID = groupID;
     }
 
+    /**
+     * sets the name of the group
+     * @param groupName
+     */
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
 
+    /**
+     * sets the number of members in a group
+     * @param numberOfMembers
+     */
     public void setNumberOfMembers(int numberOfMembers) {
         this.numberOfMembers = numberOfMembers;
     }
 
+    /**
+     * returns the group description
+     * @return String
+     */
     public String getDescription() {
         return description;
     }
 
+
+    /**
+     * sets the group description
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * returns the admin ID
+     * @return  String
+     */
     public String getAdminID() { return adminID;}
 
+    /**
+     * returns list of memebers in a group
+     * @return String array
+     */
     public String[] getMembers() { return members; }
 }
